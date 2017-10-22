@@ -1,0 +1,13 @@
+<md-toolbar class="md-hue-3">
+	<div class="md-toolbar-tools">
+		<md-button ng-if="backurl" href="{{ ::backurl}}">
+			<md-icon md-svg-icon="navigation:arrow_back"></md-icon> 
+			{{ 'toolbar.back' | translate }}
+		</md-button>
+		<h3>
+			{{title | translate }}
+		</h3> 
+		<span flex></span>
+		<span layout="row" ng-transclude></span> 
+	</div>
+</md-toolbar>

@@ -1,0 +1,70 @@
+{
+  "app.name": "Project LARP",
+
+  "logout": "Logout",
+  "open": "Open",
+  "more": "More",
+  "hide": "Hide",
+  "got_it": "Got it!",
+
+  "pagination.of": "of",
+  "pagination.page": "Page:",
+  "pagination.rowsperpage": "Rows per page:",
+
+  "navbar.home": "Home",
+  "navbar.help": "Help",
+  "navbar.service_flow": "Service Flow",
+  "navbar.exchanges": "Exchanges",
+  "navbar.error_flow": "Error Flow",
+  "navbar.service_traffic": "Service Traffic",
+  "navbar.error_count": "Error Count",
+  "navbar.service_response": "Response Time",
+  "navbar.cache_count": "Cache Ratio",
+  "navbar.resubmit": "Reject/Resubmit",
+
+  "toolbar.back": "Go Back",
+
+  "loading": "Loading datas...",
+  "loading.message": "(you can launch a new search any time, without waiting the completion of this loading)",
+
+  "help.tooltip": "Help (click me!)",
+  "help.dialog": "Help",
+  
+  "download.tooltip": "Export CSV Datas",
+
+  "search.search": "Search",
+  "search.reset": "Reset",
+  "search.empty": "No Data Available. Maybe change your criteria filter.",  
+  
+  "datetime": "Date",
+  "datetime.tooltip": "Type or click to set date then time.",
+
+  "auth.login": "Welcome!",
+  "auth.login.message": "Here you can access to functionalities like ....",
+  "auth.login.help": "Please enter your credentials.",
+  "auth.login.signup": "Can't login? please sign up.",
+    
+  "auth.signup": "Sign up",
+  "auth.signup.message": "Please ask the organisators first",
+  "auth.signup.submit": "Contact",
+
+  "home": "Home",
+
+  "help": "Help",
+  "help.about": "About",
+  "help.copyright": "Designed by Project LARP Team",
+  "help.help": "General Help",
+  "help.get_help": "Get help with using this software",
+  "help.report_issue": "Report an issue",
+  
+  "help.manual.back": "Back to top",
+  "help.manual.XXX.XXX": "XXX",
+
+  "XXX.search": "XXX",
+  "XXX.search.resubmit": "XXX",
+  
+  "XXX.details": "XXX",
+  "XXX.details.XXX": "XXX",
+  
+  "test": "test"
+}

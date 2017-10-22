@@ -1,0 +1,81 @@
+<div ng-controller="DashboardController" layout='column' layout-fill>
+	<app-toolbar title="'home.dashboard'">
+		<app-search-datetime-periods dates="query.filter" execute="search()"></app-search-datetime-periods>
+		<app-help-button href="{{ ::helpTplUrl}}"></app-help-button>
+	</app-toolbar>
+	<md-content layout-padding>
+
+<app-search search="search()" clear="init()">
+	<app-search-datetime-interval dates="query.filter"></app-search-datetime-interval>
+	<md-button class="md-accent" href="{{ ::helpUrl}}"> 
+		{{ 'home.dashboard.help' | translate }}
+		<md-icon md-svg-icon="action:help"></md-icon>
+	 </md-button>
+</app-search>
+
+<md-button class="md-warn">{{ 'home.dashboard.datetime' | translate }}</md-button>
+
+<div ng-if="isLoading" app-loading></div>
+<div ng-if="!isLoading" layout="row" layout-wrap class="md-padding">
+
+	<md-card layout="column">
+		<md-card-header>
+          <md-card-avatar>
+            <md-icon md-svg-icon="navigation:check"></md-icon>
+          </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title">{{ 'home.dashboard.status' | translate }}</span>
+            <span class="md-subhead">{{ 'home.dashboard.status.subhead' | translate }}</span>
+          </md-card-header-text>
+        </md-card-header>
+	    <nvd3 options="serviceOptions" data="serviceStatusData"></nvd3>
+        <md-card-actions layout="row" layout-align="start center">
+       		<md-button class="md-primary" href="{{ ::errorUrl}}"> 
+				{{ 'more' | translate }} 
+				<md-icon md-svg-icon="navigation:chevron_right"></md-icon>
+			</md-button>
+		</md-card-actions>
+	</md-card>
+	
+	<md-card layout="column">
+		<md-card-header>
+          <md-card-avatar>
+            <md-icon md-svg-icon="toggle:star_half"></md-icon>
+          </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title">{{ 'home.dashboard.cache' | translate }}</span>
+            <span class="md-subhead">{{ 'home.dashboard.cache.subhead' | translate }}</span>
+          </md-card-header-text>
+        </md-card-header>
+		<nvd3 options="cacheOptions" data="cacheData" title="Cache"></nvd3>
+        <md-card-actions layout="row" layout-align="start center">
+			<md-button class=" md-primary" href="{{ ::cacheUrl}}"> 
+				{{ 'more' | translate }} 
+				<md-icon md-svg-icon="navigation:chevron_right"></md-icon>
+			</md-button>
+		</md-card-actions>
+	</md-card>
+	
+	<md-card layout="column">
+		<md-card-header>
+          <md-card-avatar>
+            <md-icon md-svg-icon="mdi:chart-areaspline"></md-icon>
+          </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title">{{ 'home.dashboard.traffic' | translate }}</span>
+            <span class="md-subhead">{{ 'home.dashboard.traffic.subhead' | translate }}</span>
+          </md-card-header-text>
+        </md-card-header>
+       	<nvd3 options="trafficOptions" data="trafficData"></nvd3>
+        <md-card-actions layout="row" layout-align="start center">
+			<md-button class=" md-primary" href="{{ ::trafficUrl}}"> 
+				{{ 'more' | translate }} 
+				<md-icon md-svg-icon="navigation:chevron_right"></md-icon>
+			</md-button>
+		</md-card-actions>
+	</md-card>
+		
+</div>
+
+	</md-content>
+</div>

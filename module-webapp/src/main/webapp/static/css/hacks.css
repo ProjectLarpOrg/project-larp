@@ -1,0 +1,14 @@
+/* IE11 *************************** */
+md-card md-card-title {
+	margin: 0px 0px 20px 0px !important;
+}
+
+/* CHROME 36 *************************** */
+md-icon {
+	height: 24px !important;
+}
+
+/* CHROME USER AGENT  *************************** */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}

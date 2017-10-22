@@ -1,0 +1,379 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.8.RELEASE</version>
+	</parent>
+
+	<groupId>org.projectlarp</groupId>
+	<artifactId>project-larp</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<packaging>war</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+
+		<!-- ********************************************* -->
+		<!-- APP -->
+		<!-- ********************************************* -->
+		
+		<!-- <javascript.min>.min</javascript.min> -->
+		<javascript.min></javascript.min>
+
+		<!-- USER INTERFACE LAYER ********************* -->
+
+		<!-- MATERIAL -->
+		<angular-material.version>1.1.1</angular-material.version>
+		<angular-material-icons.version>0.7.0</angular-material-icons.version>
+		<angular-material-data-table.version>0.10.9</angular-material-data-table.version>
+
+		<!-- FRAMEWORK LAYER ********************* -->
+
+		<!-- ANGULAR -->
+		<angularjs.version>1.6.6</angularjs.version>
+		<!-- ANGULAR : EXT -->
+		<angular-translate.version>2.13.1</angular-translate.version>
+		<angular-dynamic-locale.version>0.1.32</angular-dynamic-locale.version>
+
+		<!-- COMPONENTS LAYER ********************* -->
+
+		<satellizer.version>0.14.0</satellizer.version>
+		<angular-ui-router.version>0.2.18</angular-ui-router.version>
+
+		<prettify.version>4-Mar-2013</prettify.version>
+		<vkbeautify.version>0.99.00.beta</vkbeautify.version>
+
+		<angular-datepicker.version>2.1.3</angular-datepicker.version>
+		<moment.version>2.10.6</moment.version>
+		<moment-timezone.version>0.4.1</moment-timezone.version>
+
+		<!-- WARNING: PLEASE UPDATE THE VERSION WITH CAUTION (THESE LIBS USE MAVEN 
+			INTERVAL) -->
+		<angular-nvd3.version>1.0.9</angular-nvd3.version>
+		<nvd3.version>1.8.1</nvd3.version>
+		<d3.version>3.5.5</d3.version>
+
+		<!-- ********************************************* -->
+		<!-- SERVER -->
+		<!-- ********************************************* -->
+
+		<java.version>8</java.version>
+
+	</properties>
+	<dependencies>
+
+
+		<!-- ********************************************* -->
+		<!-- APP -->
+		<!-- ********************************************* -->
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-servlet-2.x</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<!-- ANGULARJS -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>angularjs</artifactId>
+			<version>${angularjs.version}</version>
+		</dependency>
+		<!-- MATERIAL -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>angular-material</artifactId>
+			<version>${angular-material.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular-material-icons</artifactId>
+			<version>${angular-material-icons.version}</version>
+		</dependency>
+		<!-- DATATABLE PAGINATION -->
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular-material-data-table</artifactId>
+			<version>${angular-material-data-table.version}</version>
+		</dependency>
+		<!-- CHARTS -->
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular-nvd3</artifactId>
+			<version>${angular-nvd3.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.webjars.bower</groupId>
+					<artifactId>nvd3</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.webjars.bower</groupId>
+					<artifactId>d3</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>nvd3</artifactId>
+			<version>${nvd3.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.webjars.bower</groupId>
+					<artifactId>d3</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>d3</artifactId>
+			<version>${d3.version}</version>
+		</dependency>
+		<!-- i18n: LANGUE -->
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular-translate</artifactId>
+			<version>${angular-translate.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular-translate-storage-cookie</artifactId>
+			<version>${angular-translate.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>angular-translate-loader-static-files</artifactId>
+			<version>${angular-translate.version}</version>
+		</dependency>
+		<!-- l10n: LOCALE -->
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular-dynamic-locale</artifactId>
+			<version>${angular-dynamic-locale.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular-i18n</artifactId>
+			<version>${angularjs.version}</version>
+		</dependency>
+		<!-- AUTH -->
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular-ui-router</artifactId>
+			<version>${angular-ui-router.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>satellizer</artifactId>
+			<version>${satellizer.version}</version>
+		</dependency>
+		<!-- FORMAT XML -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>prettify</artifactId>
+			<version>${prettify.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>vkbeautify</artifactId>
+			<version>${vkbeautify.version}</version>
+		</dependency>
+		<!-- DATES -->
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>js-angular-datepicker</artifactId>
+			<version>${angular-datepicker.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>moment</artifactId>
+			<version>${moment.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>moment-timezone</artifactId>
+			<version>${moment-timezone.version}</version>
+		</dependency>
+
+		<!-- ********************************************* -->
+		<!-- SERVER -->
+		<!-- ********************************************* -->
+
+		<!-- LANGUAGE EXTENSION -->
+
+		<!-- GET/SET GENERATOR -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<!-- FUNCTIONNAL AND STREAM -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>23.0</version>
+		</dependency>
+		<!-- DATETIME -->
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+
+		<!-- JAVA SERVER -->
+
+		<!-- CONTAINER -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- REST -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<!-- DAO -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-dbcp2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+		</dependency>
+		<!-- SQL -->
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+		</dependency>
+
+		<!-- TEST -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+	<build>
+		<resources>
+			<!-- ADD VERSION NUMBER TO INDEX.HTML -->
+			<resource>
+				<directory>src/main/java</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>build.properties</include>
+				</includes>
+			</resource>
+			<!-- REPLACE ALL FOR WEBJARS URLS -->
+			<resource>
+				<directory>src/main/webapp/static</directory>
+				<filtering>true</filtering>
+				<targetPath>${project.basedir}/target/classes/static</targetPath>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.${java.version}</source>
+					<target>1.${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>org.springframework</groupId>
+						<artifactId>springloaded</artifactId>
+						<version>1.2.8.RELEASE</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			
+			<!-- HTML TO JS (BUILD) -->
+			<plugin>
+				<groupId>com.keithbranton.mojo</groupId>
+				<artifactId>angular-maven-plugin</artifactId>
+				<version>0.3.4</version>
+				<executions>
+					<execution>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>html2js</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<sourceDir>${basedir}/src/main/webapp/static/js/</sourceDir>
+					<angularDependency>angular</angularDependency>
+					<include>**/*.html</include>
+					<target>${basedir}/target/classes/static/js/templates.js</target>
+					<addRequireWrapper>false</addRequireWrapper>
+					<prefix>js</prefix>
+					<multiModule>false</multiModule>
+					<preambles>
+						<preamble>/*jshint -W099 */</preamble>
+					</preambles>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!-- HTML TO JS (FOR ECLIPSE IDE WARNING) -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>com.keithbranton.mojo</groupId>
+										<artifactId>angular-maven-plugin</artifactId>
+										<versionRange>[0.1-SNAPSHOT,)</versionRange>
+										<goals>
+											<goal>html2js</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute>
+											<runOnIncremental>true</runOnIncremental>
+										</execute>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

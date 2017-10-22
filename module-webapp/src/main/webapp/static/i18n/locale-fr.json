@@ -1,0 +1,70 @@
+{
+  "app.name": "Projet GN",
+  
+  "logout": "Quitter",
+  "open": "Ouvrir",
+  "more": "Plus",
+  "hide": "Cacher",
+  "got_it": "Compris!",
+
+  "pagination.of": "sur",
+  "pagination.page": "Page:",
+  "pagination.rowsperpage": "Lignes par page:",
+
+  "navbar.home": "Accueil",
+  "navbar.help": "Aide",
+  "navbar.service_flow": "Service Flux",
+  "navbar.exchanges": "Exchanges",
+  "navbar.error_flow": "Erreur Flux",
+  "navbar.service_traffic": "Service Trafic",
+  "navbar.error_count": "Erreurs Histo",
+  "navbar.service_response": "Temps de réponse",
+  "navbar.cache_count": "Cache Usage",
+  "navbar.resubmit": "Rejet/Rejeu",
+
+  "toolbar.back": "Retour",
+
+  "loading": "Chargement des données...",
+  "loading.message": "(vous pouvez lancer une nouvelle recherche n'importe quand, sans attendre la fin de ce chargement)",
+
+  "help.tooltip": "Aide (cliquer!)",
+  "help.dialog": "Aide",
+  
+  "download.tooltip": "Export données CSV",
+
+  "search.search": "Chercher",
+  "search.reset": "Effacer",
+  "search.empty": "Aucune données disponible. Essayez d'autres critères de recherche.",  
+  
+  "datetime": "Date",
+  "datetime.tooltip": "Taper ou clicker pour définir date puis l'heure.",
+
+  "auth.login": "Bienvenue!",
+  "auth.login.message": "Ici vous pouvez accéder à des fonctionnalités de ...",
+  "auth.login.help": "S'il vous plaît entrer vos informations d'identification (login ou mail).",
+  "auth.login.signup": "problème de  connexion? Inscrivez vous.",
+ 
+  "auth.signup": "Créer un compte",
+  "auth.signup.message": "Merci de demander un compte aux organisateurs.",
+  "auth.signup.submit": "Contacter",
+
+  "home": "Accueil",
+
+  "help": "Aide",
+  "help.about": "A propos",
+  "help.copyright": "Créé par Project LARP Team",
+  "help.help": "Aide Générale",
+  "help.get_help": "Obtenir de l'aide sur l'utilisation du logiciel",
+  "help.report_issue": "Signaler un problème",
+  
+  "help.manual.back": "Retour au début",
+  "help.manual.XXX.XXX": "XXX",
+
+  "XXX.search": "XXX",
+  "XXX.search.resubmit": "XXX",
+  
+  "XXX.details": "XXX",
+  "XXX.details.XXX": "XXX",
+  
+  "test": "test"
+}

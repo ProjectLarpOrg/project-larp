@@ -1,0 +1,55 @@
+<div ng-controller="HelpController">
+	<app-toolbar title="'help'" backurl="backUrl"> </app-toolbar>
+	<md-content layout-padding>
+
+<div layout-padding>
+	<h2>{{ 'help.about' | translate }}</h2>
+	<p>{{ 'auth.login.message' | translate }}</p>
+  	<section layout="row" layout-xs="column" layout-align="start center" layout-wrap>
+		<md-button class="md-raised" ng-click="scrollTo('help-section-top')">
+			{{ 'help.get_help' | translate }} 
+		 </md-button>
+		<md-button class="md-raised" href="{{ ::supportUrl}}">
+			{{ 'help.report_issue' | translate }} 
+		 </md-button>
+	</section>
+	 <p>Version {{ ::buildVersion}} ({{ ::buildTimestamp}})</p>
+	<div>
+		<md-button href="{{ ::teamUrl}}">
+			{{ 'help.copyright' | translate }} 
+			<md-icon md-svg-icon="image:navigate_next"></md-icon>
+		 </md-button>
+	</div>
+</div>
+
+<md-divider></md-divider>
+
+<div id="help-section-top" layout-padding>
+	<h2>{{ 'help.help' | translate }}</h2>
+  	<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+		<md-button class="md-primary" ng-click="scrollTo('help-section-features')">
+			{{ 'help.manual.index.features' | translate }} </a></md-button>
+		<md-button class="md-primary" ng-click="scrollTo('help-section-menu')">
+			{{ 'help.manual.index.home' | translate }} </a></md-button>
+	</section>
+</div>
+<div id="help-section-features" layout-padding>
+	{{ 'help.manual.back' | translate }} <md-button class="md-fab md-mini md-primary" ng-click="scrollTo('help-section-top')"><md-icon md-svg-icon="navigation:expand_less"></md-icon></md-button>
+	<h2>{{ 'help.manual.features' | translate }}</h2>
+	<p>{{ 'help.manual.features.text' | translate }}</p>
+	<app-card-container> 
+		<app-card title="Charts"> <img src="img/help/help-07.jpg"
+		style="height: 300px; width: 320px;"> </app-card> 
+		<app-card title="Data Tables"> <img src="img/help/help-06.jpg"
+		style="height: 300px; width: 320px;"> </app-card>
+		<app-card title="Item Details"> <img src="img/help/help-08.jpg"
+		style="height: 300px; width: 320px;"> </app-card> 
+	</app-card-container>
+</div>
+<div id="help-section-menu" layout-padding>
+	{{ 'help.manual.back' | translate }} <md-button class="md-fab md-mini md-primary" ng-click="scrollTo('help-section-top')"><md-icon md-svg-icon="navigation:expand_less"></md-icon></md-button>
+	<ng-include src="helpHome"></ng-include>
+</div>
+
+	</md-content>
+</div>
