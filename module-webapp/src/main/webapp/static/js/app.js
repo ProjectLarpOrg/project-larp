@@ -1,18 +1,18 @@
 'use strict';
 
 angular.module('app', [ //
-'ngResource', //
-'ngRoute', //
-'ngAnimate', //
-'ngMaterial', //
-'satellizer', //
-'md.data.table', //
-'nvd3', //
-'ngCookies', //
-'pascalprecht.translate', //
-'tmh.dynamicLocale', //
-'datePicker', //
-'templates-main' //
+	'ngResource', //
+	'ngRoute', //
+	'ngAnimate', //
+	'ngMaterial', //
+	'satellizer', //
+	'md.data.table', //
+	'nvd3', //
+	'ngCookies', //
+	'pascalprecht.translate', //
+	'tmh.dynamicLocale', //
+	'datePicker', //
+	'templates-main' //
 ])
 
 // CONFIG
@@ -25,6 +25,8 @@ angular.module('app', [ //
 		when('/auth/login',  { templateUrl : 'js/modules/auth/login.html'	}).
 		when('/auth/logout', { templateUrl : 'js/modules/auth/logout.html'	}).
 		otherwise('/home');
+	$locationProvider.hashPrefix('');
+	//$locationProvider.html5Mode(true);
 })
 
 .config(function($authProvider) {
