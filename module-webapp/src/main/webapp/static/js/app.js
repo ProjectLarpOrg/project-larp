@@ -16,102 +16,15 @@ angular.module('app', [ //
 ])
 
 // CONFIG
-.config(function($routeProvider) {
+.config(function($routeProvider, $locationProvider) {
 	// ROUTE: URLs
-	$routeProvider //
-	// HOME
-	.when('/home', {
-		templateUrl : 'js/modules/home/dashboard.html',
-		resolve : {
-			loginRequired : loginRequired
-		}
-	}).when('/help', {
-		templateUrl : 'js/modules/help/help.html',
-	}) //
-	// SERVICES
-	.when('/services', {
-		templateUrl : 'js/modules/service/search.html',
-		resolve : {
-			loginRequired : loginRequired
-		}
-	}).when('/services/:id', {
-		templateUrl : 'js/modules/service/details.html',
-		resolve : {
-			loginRequired : loginRequired
-		}
-	}).when('/charts/service/responsetime', {
-		templateUrl : 'js/modules/servicecharts/responsetime.html',
-		resolve : {
-			loginRequired : loginRequired
-		}
-	}).when('/charts/service/count', {
-		templateUrl : 'js/modules/servicecharts/count.html',
-		resolve : {
-			loginRequired : loginRequired
-		}
-	}) //	
-	// ERROR
-	.when('/error', {
-		templateUrl : 'js/modules/error/search.html',
-		resolve : {
-			loginRequired : loginRequired
-		}
-	}).when('/error/:id', {
-		templateUrl : 'js/modules/error/details.html',
-		resolve : {
-			loginRequired : loginRequired
-		}
-	}).when('/charts/error/count', {
-		templateUrl : 'js/modules/errorcharts/count.html',
-		resolve : {
-			loginRequired : loginRequired
-		}
-	}) //
-	// EXCHANGE
-	.when('/exchange', {
-		templateUrl : 'js/modules/exchange/search.html',
-		resolve : {
-			loginRequired : loginRequired
-		}
-	}).when('/exchange/:id', {
-		templateUrl : 'js/modules/exchange/details.html',
-		resolve : {
-			loginRequired : loginRequired
-		}
-	}) //
-	// CACHE
-	.when('/charts/cache/count', {
-		templateUrl : 'js/modules/cachecharts/count.html',
-		resolve : {
-			loginRequired : loginRequired
-		}
-	})
-
-	// AUTH
-	.when('/auth/login', {
-		templateUrl : 'js/modules/auth/login.html',
-	}).when('/auth/logout', {
-		templateUrl : 'js/modules/auth/logout.html',
-	}).when('/auth/signup', {
-		templateUrl : 'js/modules/auth/signup.html',
-	})
-	
-	// RESUBMIT
-	.when('/resubmit', {
-		templateUrl : 'js/modules/resubmit/search.html',
-		resolve : {
-			loginRequired : loginRequired
-		}
-	})
-	.when('/resubmit/:id', {
-		templateUrl : 'js/modules/resubmit/details.html',
-		resolve : {
-			loginRequired : loginRequired
-		}
-	})
-
-	// DEFAULT
-	.otherwise('/home');
+	$routeProvider. //
+		when('/home',        { templateUrl : 'js/modules/home/home.html', resolve : { loginRequired : loginRequired }	}).
+		when('/about',       { templateUrl : 'js/modules/home/about.html'	}).
+		when('/help',        { templateUrl : 'js/modules/help/help.html'	}).
+		when('/auth/login',  { templateUrl : 'js/modules/auth/login.html'	}).
+		when('/auth/logout', { templateUrl : 'js/modules/auth/logout.html'	}).
+		otherwise('/home');
 })
 
 .config(function($authProvider) {
@@ -151,21 +64,14 @@ angular.module('app', [ //
 })
 
 .config(function($mdThemingProvider) {
-	// PALETTE(S)
-	$mdThemingProvider.definePalette('app-blue', 
-		$mdThemingProvider.extendPalette('indigo', {
-			'500': '#128fbc', // electric-blue
-			'800': '#125c7d', // dark-electric-blue
-			'A100': '#E6EBED', // light-grey
-			'A200': '#128fbc' // electric-blue
-	}));
-	$mdThemingProvider.theme('app') //
-		.primaryPalette('app-blue') //
-		.accentPalette('indigo') // 
+	$mdThemingProvider.theme('default') //
+		.primaryPalette('brown') //
+		.accentPalette('green') // 
 		.warnPalette('red') //
-		.backgroundPalette('grey');
+		.backgroundPalette('grey') //
+		;
 	// INIT
-	$mdThemingProvider.setDefaultTheme('app');
+	$mdThemingProvider.setDefaultTheme('default');
 })
 
 //i18n: LANGUAGE

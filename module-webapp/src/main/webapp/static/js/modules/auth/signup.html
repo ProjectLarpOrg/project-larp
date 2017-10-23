@@ -1,0 +1,18 @@
+<div ng-controller="SignupController">
+<form id="signup" name="signupForm" layout-padding>
+	<div hide show-gt-sm class="brand"> </div>
+      <h2>
+        {{ 'auth.signup' | translate }}
+        <md-icon md-svg-icon="communication:vpn_key"></md-icon>
+      </h2>
+      <p>{{ 'auth.signup.message' | translate }}</p>
+      
+      <div>
+        <md-button class="md-raised md-primary"
+          href="{{ ::siteUrl }}">
+          {{ 'auth.signup.submit' | translate }} 
+          <md-icon md-svg-icon="action:help"></md-icon></md-button>
+      </div>
+      
+</form>
+</div>

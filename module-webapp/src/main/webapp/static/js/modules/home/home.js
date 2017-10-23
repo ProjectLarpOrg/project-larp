@@ -13,7 +13,7 @@ angular.module('app') //
 	return $resource('api/home/charts/traffic');
 })
 
-.controller('DashboardController', function($scope, PageHelper,
+.controller('HomeController', function($scope, PageHelper,
 		ServiceStatusDashboardChartsService, CacheDashboardChartsService,
 		TrafficDashboardChartsService, Nvd3Helper, $route) {
 	// CONST

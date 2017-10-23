@@ -5,9 +5,13 @@
  		<md-icon md-svg-icon="navigation:menu"></md-icon> 
  		MENU 
 	</md-button> 
-    <md-button class="nav-brand" href="#/home">
-    	<img src="img/logo.png"> 
-	    <span>{{ 'app.name' | translate }} </span>
+	
+    <md-button ng-href="{{::homeUrl}}">
+    	<img class="nav-brand" src="img/app-logo.png"> 
+	    <span>{{ 'home' | translate }} </span>
+    </md-button>
+    <md-button ng-href="{{::aboutUrl}}">
+	    <span>{{ 'about' | translate }} </span>
     </md-button>
     
 	<span flex></span> 

@@ -2,20 +2,20 @@
 angular.module('app') //
 
 // https://material.angularjs.org/latest/demo/sidenav
-.directive('appNavContent', function() {
+.directive('appNavbarContent', function() {
 	return {
 		controller : function($scope, $timeout, $mdSidenav, $log, $location) {
 		    $scope.close = function () {
 		        $mdSidenav('left').close();
 		    };
 		},
-		templateUrl : 'js/directives/nav-content.html'
+		templateUrl : 'js/directives/navbar-content.html'
 	};
 })
 
 // https://material.angularjs.org/latest/demo/toolbar
 // https://material.angularjs.org/latest/demo/sidenav
-.directive('appNavToolbar', function() {
+.directive('appNavbar', function() {
 	return {
 		controller : function($scope, $timeout, $mdSidenav, $log, $sce) {
 		    $scope.toggleLeft = buildToggler('left');
@@ -36,13 +36,15 @@ angular.module('app') //
 				return $sce.trustAsResourceUrl(src);
 			}
 			// INIT
+			$scope.homeUrl = '#/';
+			$scope.aboutUrl = '#/about';
 			var originatorEv;
 			$scope.openMenu = function($mdOpenMenu, ev) {
 		      originatorEv = ev;
 		      $mdOpenMenu(ev);
 		    };
 		},
-		templateUrl : 'js/directives/nav-toolbar.html'
+		templateUrl : 'js/directives/navbar.html'
 	};
 })
 

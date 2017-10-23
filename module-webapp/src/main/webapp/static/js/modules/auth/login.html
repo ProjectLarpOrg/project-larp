@@ -1,65 +1,27 @@
-<div class="app-auth" ng-controller="LoginController">
-	<div layout="row" layout-align="center center">
-		<div layout="column" layout-gt-sm="row" layout-padding>
+<div ng-controller="LoginController">
+<div layout="row" layout-align="center center" layout-padding>
+  <div>
+	<div layout="row">
+		<div hide-xs flex>
 		
-<form id="login" name="loginForm" ng-submit="login()" novalidate layout-padding>
-	<div class="brand"> 
-		<img src="img/app-logo.png">
-	</div>
 	<h2>{{ 'auth.login' | translate }}</h2>
 	<p>{{ 'auth.login.message' | translate }}</p>
-	<!-- LOGIN -->
-	<md-input-container class="md-block" flex-gt-sm>
-		<input class="form-control input-lg" type="text" name="username"
-			ng-model="username" 
-			placeholder="Login" required autofocus>
-	</md-input-container>
-	<!-- PASSWORD -->
-	<md-input-container class="md-block" flex-gt-sm>
-		<input server-error class="form-control input-lg" type="password"
-			name="password" ng-model="password" 
-			placeholder="Password" required>
-	</md-input-container>
-	<!-- HELP -->
-	<div class="help-block" ng-if="loginForm.$invalid"
-		ng-messages="loginForm.$invalid">
-		<div ng-message="required">
-		{{ 'auth.login.help' | translate }}</div>
-	</div>
-	<!-- SUBMIT -->
-	<div>
-		<md-button class="md-primary md-raised"
-		 	type="submit" 
-			ng-disabled="loginForm.$invalid">
-			LOG IN <md-icon
-			md-svg-icon="mdi:login"></md-icon> </md-button>
-	</div>
-	<div>
-		<md-button class="md-primary" href="{{ ::siteUrl }}">
-			{{ 'copyright' | translate }}
-			<md-icon md-svg-icon="image:navigate_next"></md-icon>
-		</md-button>
-		<md-button class="md-primary" href="{{ ::siteUrl }}">
-			 version {{ ::buildVersion }}
-		</md-button>
-	</div>
-</form>
-
-<form id="signup" name="signupForm" layout-padding>
-	<div hide show-gt-sm class="brand"> </div>
-      <h2>
-        {{ 'auth.signup' | translate }}
-        <md-icon md-svg-icon="communication:vpn_key"></md-icon>
-      </h2>
-      <p>{{ 'auth.signup.message' | translate }}</p>
-      <p>
-        <md-button class="md-raised md-primary"
-          href="{{ ::siteUrl }}">
-          {{ 'auth.signup.submit' | translate }} 
-          <md-icon md-svg-icon="action:help"></md-icon></md-button>
-      </p>
-</form>
-
+	
 		</div>
 	</div>
+  </div>
+  <div>
+	<div layout="column">
+	
+	  <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+		<ng-include src="signin"></ng-include>
+	  </md-card>
+	  
+	  <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+		<ng-include src="signup"></ng-include>
+	  </md-card>
+      
+	<div>
+  </div>
+</div>
 </div>

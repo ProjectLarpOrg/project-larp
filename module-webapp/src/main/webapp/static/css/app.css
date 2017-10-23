@@ -1,11 +1,6 @@
-.nav-brand img {
+img.nav-brand {
 	vertical-align: top;
 	height: 30px;
-}
-.nav-brand span {
-	vertical-align: top;
-	font-size: 20px;
-	margin-left: 80px;
 }
 
 .single-line {
