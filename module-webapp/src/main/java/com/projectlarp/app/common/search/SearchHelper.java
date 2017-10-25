@@ -16,9 +16,8 @@ import com.google.common.collect.Lists;
 public class SearchHelper {
 
 	public static final String ISODateTime = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"; // ISO8601DateFormat
-	public static final String errorMessage = " date must be like " + ISODateTime
-			+ " (ex: 2015-10-31T11:51:53.001Z)";
-	
+	public static final String errorMessage = " date must be like " + ISODateTime + " (ex: 2015-10-31T11:51:53.001Z)";
+
 	public static void checkArguments(String fromDate, String toDate) {
 		checkArgument(fromDate != null, errorMessage);
 		checkArgument(toDate != null, errorMessage);
@@ -68,7 +67,8 @@ public class SearchHelper {
 	}
 
 	/**
-	 * Checks if a String is whitespace, empty (""), emptyLike("%%") or null. <br/>
+	 * Checks if a String is whitespace, empty (""), emptyLike("%%") or null.
+	 * <br/>
 	 * StringUtils.isBlank(null) = true <br/>
 	 * StringUtils.isBlank("") = true <br/>
 	 * StringUtils.isBlank(" ") = true <br/>
@@ -101,25 +101,27 @@ public class SearchHelper {
 		return true;
 	}
 
-	public static boolean isBlank(String arg) {
-		if (Strings.isNullOrEmpty(arg)) {
-			return true;
-		} else {
-			if (arg.contains("%")) {
+	private static final String EMPTY = "";
+	private static final String SPACE = " ";
+	private static final String EMPTY_QUERY = "%%";
+	private static final String QUERY_BRACKETS = "%";
 
-				String EMPTY = "%%";
-				if (EMPTY.equals(arg))
-					return true;
+	public static boolean isBlank(String str) {
 
-				String BLANK = "%";
-				int beginIndex = arg.indexOf(BLANK);
-				int endIndex = arg.lastIndexOf(BLANK);
-				String substring = arg.substring(beginIndex + 1, endIndex);
-				if (Strings.isNullOrEmpty(substring)) {
-					return true;
-				}
-			}
+		str = (str == null) ? EMPTY : str.replaceAll(SPACE, EMPTY);
+
+		if (str.contains(QUERY_BRACKETS)) {
+			if (EMPTY_QUERY.equals(str))
+				return true;
+			int beginIndex = str.indexOf(QUERY_BRACKETS);
+			int endIndex = str.lastIndexOf(QUERY_BRACKETS);
+			str = str.substring(beginIndex + 1, endIndex);
 		}
+
+		if (Strings.isNullOrEmpty(str)) {
+			return true;
+		}
+
 		return false;
 	}
 }

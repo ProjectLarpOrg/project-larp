@@ -2,7 +2,6 @@
 <html ng-app="app">
 <head>
 <title>@project.artifactId@</title>
-<base href="/">
 <meta app-version="@project.version@">
 
 <!-- NO CACHE -->
@@ -11,6 +10,9 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
+
+<!-- NO ZOMM ->
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
 
 <!-- YOU NEED THIS TAG TO PREVENT D3JS CHARACTER ERROR!!! -->
 <meta charset="utf-8">
@@ -82,7 +84,7 @@
 		<div class="animated-container" ng-class="ng-leave">
 			<div class="messaging">
 				<h1>
-					App is Loading
+					App is Loading...
 				</h1>
 		 		<img class="spinner" src="img/app-loading.gif"> 
 			</div>
