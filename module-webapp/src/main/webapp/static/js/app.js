@@ -46,23 +46,26 @@ angular.module('app', [ //
 
 .config(function($mdIconProvider) {
 	$mdIconProvider //
-	.iconSet('action', 'angular/icons/sets/action-icons.svg', 24) //
-	.iconSet('alert', 'angular/icons/sets/alert-icons.svg', 24) //
-	.iconSet('av', 'angular/icons/sets/av-icons.svg', 24) //
-	.iconSet('communication', 'angular/icons/sets/communication-icons.svg', 24) //
-	.iconSet('content', 'angular/icons/sets/content-icons.svg', 24) //
-	.iconSet('device', 'angular/icons/sets/device-icons.svg', 24) //
-	.iconSet('editor', 'angular/icons/sets/editor-icons.svg', 24) //
-	.iconSet('file', 'angular/icons/sets/file-icons.svg', 24) //
-	.iconSet('hardware', 'angular/icons/sets/hardware-icons.svg', 24) //
-	.iconSet('icons', 'angular/icons/sets/icons-icons.svg', 24) //
-	.iconSet('image', 'angular/icons/sets/image-icons.svg', 24) //
-	.iconSet('maps', 'angular/icons/sets/maps-icons.svg', 24) //
-	.iconSet('navigation', 'angular/icons/sets/navigation-icons.svg', 24) //
-	.iconSet('notification', 'angular/icons/sets/notification-icons.svg', 24) //
-	.iconSet('social', 'angular/icons/sets/social-icons.svg', 24) //
-	.iconSet('toggle', 'angular/icons/sets/toggle-icons.svg', 24) //
-	.iconSet('mdi', 'angular/icons/sets/mdi-icons.svg', 24) //
+		.iconSet('action', 'angular/icons/sets/action-icons.svg', 24) //
+		.iconSet('alert', 'angular/icons/sets/alert-icons.svg', 24) //
+		/*
+		.iconSet('av', 'angular/icons/sets/av-icons.svg', 24) //
+		.iconSet('communication', 'angular/icons/sets/communication-icons.svg', 24) //
+		.iconSet('content', 'angular/icons/sets/content-icons.svg', 24) //
+		.iconSet('device', 'angular/icons/sets/device-icons.svg', 24) //
+		.iconSet('editor', 'angular/icons/sets/editor-icons.svg', 24) //
+		.iconSet('file', 'angular/icons/sets/file-icons.svg', 24) //
+		.iconSet('hardware', 'angular/icons/sets/hardware-icons.svg', 24) //
+		.iconSet('icons', 'angular/icons/sets/icons-icons.svg', 24) //
+		.iconSet('image', 'angular/icons/sets/image-icons.svg', 24) //
+		.iconSet('maps', 'angular/icons/sets/maps-icons.svg', 24) //
+		.iconSet('navigation', 'angular/icons/sets/navigation-icons.svg', 24) //
+		.iconSet('notification', 'angular/icons/sets/notification-icons.svg', 24) //
+		.iconSet('social', 'angular/icons/sets/social-icons.svg', 24) //
+		.iconSet('toggle', 'angular/icons/sets/toggle-icons.svg', 24) //
+		.iconSet('mdi', 'angular/icons/sets/mdi-icons.svg', 24) //
+		*/
+		;
 })
 
 .config(function($mdThemingProvider) {

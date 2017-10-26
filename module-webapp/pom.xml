@@ -16,6 +16,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>8</java.version>
+
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
 
@@ -23,31 +25,25 @@
 		<!-- APP -->
 		<!-- ********************************************* -->
 
-		<!-- <javascript.min>.min</javascript.min> -->
-		<javascript.min></javascript.min>
-
 		<!-- USER INTERFACE LAYER ********************* -->
 
 		<!-- MATERIAL -->
-		<angular-material.version>1.1.1</angular-material.version>
-		<angular-material-icons.version>0.7.0</angular-material-icons.version>
+		<angular-material.version>1.1.5</angular-material.version>
+		<angular-material-icons.version>0.7.1</angular-material-icons.version>
 		<angular-material-data-table.version>0.10.9</angular-material-data-table.version>
 
 		<!-- FRAMEWORK LAYER ********************* -->
 
 		<!-- ANGULAR -->
-		<angularjs.version>1.6.6</angularjs.version>
+		<angular.version>1.6.6</angular.version>
 		<!-- ANGULAR : EXT -->
-		<angular-translate.version>2.13.1</angular-translate.version>
+		<angular-translate.version>2.15.2</angular-translate.version>
 		<angular-dynamic-locale.version>0.1.32</angular-dynamic-locale.version>
 
 		<!-- COMPONENTS LAYER ********************* -->
 
 		<satellizer.version>0.14.0</satellizer.version>
 		<angular-ui-router.version>0.2.18</angular-ui-router.version>
-
-		<prettify.version>4-Mar-2013</prettify.version>
-		<vkbeautify.version>0.99.00.beta</vkbeautify.version>
 
 		<angular-datepicker.version>2.1.3</angular-datepicker.version>
 		<moment.version>2.10.6</moment.version>
@@ -59,11 +55,8 @@
 		<nvd3.version>1.8.1</nvd3.version>
 		<d3.version>3.5.5</d3.version>
 
-		<!-- ********************************************* -->
-		<!-- SERVER -->
-		<!-- ********************************************* -->
-
-		<java.version>8</java.version>
+		<!-- USE MINIFY SCRIPTS ('.min') OR NOT (empty) -->
+		<javascript.min>.min</javascript.min>
 
 	</properties>
 	<dependencies>
@@ -78,17 +71,32 @@
 			<artifactId>webjars-servlet-2.x</artifactId>
 			<version>1.1</version>
 		</dependency>
-		<!-- ANGULARJS -->
+		<!-- ANGULAR -->
 		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>angularjs</artifactId>
-			<version>${angularjs.version}</version>
+			<artifactId>angular</artifactId>
+			<groupId>org.webjars.bower</groupId>
+			<version>${angular.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular-resource</artifactId>
+			<version>${angular.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular-route</artifactId>
+			<version>${angular.version}</version>
 		</dependency>
 		<!-- MATERIAL -->
 		<dependency>
-			<groupId>org.webjars</groupId>
+			<groupId>org.webjars.bower</groupId>
 			<artifactId>angular-material</artifactId>
 			<version>${angular-material.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular-aria</artifactId>
+			<version>${angular.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars.bower</groupId>
@@ -106,27 +114,11 @@
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>angular-nvd3</artifactId>
 			<version>${angular-nvd3.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>nvd3</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>d3</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>nvd3</artifactId>
 			<version>${nvd3.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.webjars.bower</groupId>
-					<artifactId>d3</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars.bower</groupId>
@@ -145,7 +137,12 @@
 			<version>${angular-translate.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.webjars</groupId>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular-cookies</artifactId>
+			<version>${angular.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
 			<artifactId>angular-translate-loader-static-files</artifactId>
 			<version>${angular-translate.version}</version>
 		</dependency>
@@ -158,7 +155,7 @@
 		<dependency>
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>angular-i18n</artifactId>
-			<version>${angularjs.version}</version>
+			<version>${angular.version}</version>
 		</dependency>
 		<!-- AUTH -->
 		<dependency>
@@ -170,17 +167,6 @@
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>satellizer</artifactId>
 			<version>${satellizer.version}</version>
-		</dependency>
-		<!-- FORMAT XML -->
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>prettify</artifactId>
-			<version>${prettify.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>vkbeautify</artifactId>
-			<version>${vkbeautify.version}</version>
 		</dependency>
 		<!-- DATES -->
 		<dependency>
@@ -233,6 +219,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
+		</dependency>
+		<!-- SECU -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
 		</dependency>
 		<!-- REST -->
 		<dependency>
