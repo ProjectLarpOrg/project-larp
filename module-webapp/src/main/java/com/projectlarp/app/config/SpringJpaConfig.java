@@ -16,37 +16,29 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
-import lombok.extern.log4j.Log4j;
+import com.projectlarp.app.modules.user.UserRepository;
 
-@Log4j
 @Configuration
 @EnableJpaRepositories(basePackageClasses = { //
-//
-//
-//		XXXRepository.class, //
-//
+		UserRepository.class //
 })
 public class SpringJpaConfig {
 
 	// PROPERTIES
-	@Value("${hibernate.dialect:org.hibernate.dialect.Oracle10gDialect}") String dialect;
-	@Value("${hibernate.jdbc.batchSize:50}") String batchSize;
-	@Value("${auth.enable:true}") String FEATURETOGGLE_AUTH;
+	@Value("${hibernate.dialect:org.hibernate.dialect.Oracle10gDialect}")
+	String dialect;
+	@Value("${hibernate.jdbc.batchSize:50}")
+	String batchSize;
 
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-			DataSource ds) {
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource ds) {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(ds);
-		
-		log.warn("feature.resubmit="+FEATURETOGGLE_AUTH);
 		List<String> packagesToScan = new ArrayList<String>();
-		packagesToScan.add("com.projectlarp.app.modules.home");
-		if(Boolean.valueOf(FEATURETOGGLE_AUTH)) {
-			packagesToScan.add("com.projectlarp.app.modules.auth");
-		}
-		em.setPackagesToScan(packagesToScan.toArray(new String[0]));
 
+		packagesToScan.add(UserRepository.class.getPackage().getName());
+
+		em.setPackagesToScan(packagesToScan.toArray(new String[0]));
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		em.setJpaVendorAdapter(vendorAdapter);
 		em.setJpaProperties(additionalProperties());

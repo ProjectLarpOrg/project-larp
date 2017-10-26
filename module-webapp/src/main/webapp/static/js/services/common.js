@@ -27,11 +27,7 @@ angular.module('app') //
 	};
 })
 
-.factory('EnvService', function($resource) {
-	return $resource('api/env');
-})
-
-.factory('Env', function(EnvService) {
+.factory('Env', function() {
 	var env = {
 		searchIntervalMaxDays: 7,
 		searchFromdateMaxYears: 2,
@@ -39,9 +35,6 @@ angular.module('app') //
 		searchRefreshFromdateMinutes: 15,
 		resubmitRefreshIntervalSeconds: 5
 	};
-	EnvService.get(function(response) {
-		env = response;
-	});
 	return {
 		vars: function() {  
 			return env;
@@ -49,15 +42,11 @@ angular.module('app') //
 	}
 })
 
-.factory("GlobalsStorage", function(EnvService) {
+.factory("GlobalsStorage", function() {
 	// GLOBAL VARS
 	var searchIntervalMaxDays = 7;
 	var searchFromdateMaxYears = 2;
 	// INIT
-//	EnvService.get(function(response) {
-//		searchIntervalMaxDays = response.searchIntervalMaxDays;
-//		searchFromdateMaxYears = response.searchFromdateMaxYears;
-//	});
 	return {
 		searchMaxDays : function() {
 			return searchIntervalMaxDays;

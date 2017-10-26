@@ -96,7 +96,7 @@ angular.module('app', [ //
 })
 
 .factory("UserService", function($resource) {
-	return $resource('api/auth/user');
+	return $resource('api/user');
 })
 
 .controller('AppController', function($scope, //
@@ -139,10 +139,9 @@ angular.module('app', [ //
 		changeLocale(lang);
 	}
 	function initSession() {
-		var token = $auth.getToken();
-		UserService.save({token: token}, function(response) {
+		UserService.get({ userId: $auth.getToken() }, function(response) {
 			$scope.session = ({
-				token : token,
+				token : $auth.getToken(),
 				user : response
 			})
 			changeLocale($scope.session.user.iso639Language);

@@ -1,13 +1,8 @@
 'use strict';
 angular.module('app') //
 
-.controller('SignupController', function($scope, EnvService) {
+.controller('SignupController', function($scope) {
 
-	// INIT
-	EnvService.get(function(response) {
-		$scope.buildVersion = response.buildVersion;
-		$scope.siteUrl = response.siteUrl;
-	});
 })
 
 ;
