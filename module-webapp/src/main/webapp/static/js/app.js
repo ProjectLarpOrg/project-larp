@@ -21,9 +21,9 @@ angular.module('app', [ //
 	$routeProvider. //
 		when('/home',        { templateUrl : 'js/modules/home/home.html', resolve : { loginRequired : loginRequired }	}).
 		when('/about',       { templateUrl : 'js/modules/home/about.html'	}).
-		when('/help',        { templateUrl : 'js/modules/help/help.html'	}).
 		when('/auth/login',  { templateUrl : 'js/modules/auth/login.html'	}).
 		when('/auth/logout', { templateUrl : 'js/modules/auth/logout.html'	}).
+		when('/help',        { templateUrl : 'js/modules/help/help.html', resolve : { loginRequired : loginRequired }	}).
 		otherwise('/home');
 	$locationProvider.hashPrefix('');
 	//$locationProvider.html5Mode(true);
@@ -110,18 +110,7 @@ angular.module('app', [ //
 	$scope.isAuthenticated = function() {
 		return $auth.isAuthenticated();
 	};
-	$scope.isAuthenticatedResubmit = function() {
-		if($scope.session && $scope.session.user) {
-			var authorizations = $scope.session.user.authorizations;
-			if(authorizations) {
-				var replyName = "C.Reply"
-				var containsReply = (authorizations.indexOf(replyName) > -1);
-				return containsReply;
-			}
-		}
-		return false;
-	};
-	
+		
 	// PRIVATE
 	function changeLocale(key) {
 	    $rootScope.model = {selectedLocale: key};

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html>
 <head>
 <title>@project.artifactId@</title>
 <meta app-version="@project.version@">
@@ -27,9 +27,12 @@
 <link rel="stylesheet" href="css/app.css?nocache=@project.version@">
 
 </head>
-<body>
+<body ng-app="app" ng-cloak>
 
+	<!-- ************************************************************* -->
 	<!-- LOADING -->
+	<!-- ************************************************************* -->
+	
 	<div class="m-app-loading" ng-if="false">
 		<!--
 			HACKY CODE WARNING: I'm putting Style block inside directive so that it 
@@ -87,11 +90,17 @@
 		<!-- END: Actual animated container. -->
 	</div>
 	
+	<!-- ************************************************************* -->
 	<!-- APP -->
-	<div ng-controller="AppController">
-	   	<app-navbar></app-navbar>
-		<div ng-view>Loading...</div>
-	</div>
+	<!-- ************************************************************* -->
+	
+   	<app-navbar></app-navbar>
+   	
+    <md-content flex layout="column">
+      <ng-view>
+        Loading...
+      </ng-view>
+    </md-content>
 		
 	<!-- ************************************************************* -->
 	<!-- LIBS JS -->

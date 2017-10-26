@@ -1,27 +1,23 @@
-<div ng-controller="LoginController">
-<div layout="row" layout-align="center center" layout-padding>
-  <div>
-	<div layout="row">
-		<div hide-xs flex>
-		
-	<h2>{{ 'auth.login' | translate }}</h2>
-	<p>{{ 'auth.login.message' | translate }}</p>
-	
-		</div>
-	</div>
-  </div>
-  <div>
-	<div layout="column">
-	
-	  <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
-		<ng-include src="signin"></ng-include>
-	  </md-card>
-	  
-	  <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
-		<ng-include src="signup"></ng-include>
-	  </md-card>
-      
-	<div>
-  </div>
-</div>
+<div ng-controller="LoginController" class="app-home">
+<md-content layout-padding class="app-bg">
+	<div layout="row" layout-align="center center" layout-padding>
+		  <div flex="30" class="app-content"  hide-xs hide-sm>
+					
+						<h2>{{ 'login' | translate }}</h2>
+						<p>{{ 'login.message' | translate }}</p>
+				
+	      </div>
+		  <div layout="column">
+			
+				  <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+					<ng-include src="signin"></ng-include>
+				  </md-card>
+				  
+				  <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+					<ng-include src="signup"></ng-include>
+				  </md-card>
+				  
+		 </div>
+	 </div>
+</md-content>
 </div>

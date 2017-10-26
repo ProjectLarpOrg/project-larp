@@ -39,17 +39,21 @@
   "datetime": "Date",
   "datetime.tooltip": "Taper ou clicker pour définir date puis l'heure.",
 
-  "auth.login": "Bienvenue!",
-  "auth.login.message": "Ici vous pouvez accéder à des fonctionnalités de ...",
-  "auth.login.help": "S'il vous plaît entrer vos informations d'identification (login ou mail).",
-  "auth.login.signup": "problème de  connexion? Inscrivez vous.",
+  "login": "Bienvenue!",
+  "login.message": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+  "login.help": "S'il vous plaît entrer vos informations d'identification (login ou mail).",
+  "login.signup": "problème de  connexion? Inscrivez vous.",
  
-  "auth.signup": "Créer un compte",
-  "auth.signup.message": "Merci de demander un compte aux organisateurs.",
-  "auth.signup.submit": "Contacter",
+  "signup": "Créer un compte",
+  "signup.message": "Merci de demander un compte aux organisateurs.",
+  "signup.submit": "Contacter",
 
   "home": "Accueil",
+  "home.content": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
 
+  "about": "A Propos",
+  "about.content": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+  
   "help": "Aide",
   "help.about": "A propos",
   "help.copyright": "Créé par Project LARP Team",

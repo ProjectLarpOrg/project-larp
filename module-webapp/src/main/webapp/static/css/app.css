@@ -16,3 +16,25 @@ td.truncated {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+
+.app-home {
+  height: 100%;
+}
+
+.app-home .app-bg {
+    background-image: url('/img/home-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover; 
+   
+	background-color: #111;
+    background-blend-mode: screen;
+}
+.app-home .app-content {
+    color: #fff;
+    font-size: 27px;
+    line-height: 32px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+

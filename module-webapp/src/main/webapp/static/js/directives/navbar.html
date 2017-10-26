@@ -1,31 +1,17 @@
-<md-toolbar layout="row"> 
+<md-toolbar> 
   <div class="md-toolbar-tools"> 
-	<md-button id="menu-button" ng-show="isAuthenticated()" ng-click="toggleLeft()" 
- 		class="md-raised" hide-gt-md> 
- 		<md-icon md-svg-icon="navigation:menu"></md-icon> 
- 		MENU 
-	</md-button> 
-	
+  	
     <md-button ng-href="{{::homeUrl}}">
     	<img class="nav-brand" src="img/app-logo.png"> 
 	    <span>{{ 'home' | translate }} </span>
     </md-button>
+    
     <md-button ng-href="{{::aboutUrl}}">
 	    <span>{{ 'about' | translate }} </span>
     </md-button>
     
 	<span flex></span> 
-
-	<md-menu ng-if="isAuthenticated()" md-position-mode="target-right target">
-		<md-button ng-click="openMenu($mdOpenMenu, $event)">
-			APPS
-   			<md-icon md-svg-icon="navigation:apps"></md-icon> 
-		</md-button>
-		<md-menu-content width="4" id="applicationsMenu">
-
-		</md-menu-content>
-	</md-menu>
-	
+		
 	<md-select ng-if="isAuthenticated()" id="langMenu" ng-model="selectedLocale" ng-change="changeLocale(selectedLocale)"> 
 		<md-option ng-repeat="(key, value) in locales" value="{{ ::key}}"> 
 			LANG:{{ ::value}} 
@@ -36,5 +22,6 @@
    		{{ 'logout' | translate }}
    		<md-icon md-svg-icon="mdi:logout"></md-icon> 
    	</md-button> 
+   	
   </div> 
 </md-toolbar>

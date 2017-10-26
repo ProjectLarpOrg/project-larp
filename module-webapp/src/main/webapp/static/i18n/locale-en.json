@@ -39,16 +39,20 @@
   "datetime": "Date",
   "datetime.tooltip": "Type or click to set date then time.",
 
-  "auth.login": "Welcome!",
-  "auth.login.message": "Here you can access to functionalities like ....",
-  "auth.login.help": "Please enter your credentials.",
-  "auth.login.signup": "Can't login? please sign up.",
+  "login": "Welcome!",
+  "login.message": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+  "login.help": "Please enter your credentials.",
+  "login.signup": "Can't login? please sign up.",
     
-  "auth.signup": "Sign up",
-  "auth.signup.message": "Please ask the organisators first",
-  "auth.signup.submit": "Contact",
+  "signup": "Sign up",
+  "signup.message": "Please ask the organisators first",
+  "signup.submit": "Contact",
 
   "home": "Home",
+  "home.content": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+
+  "about": "About",
+  "about.content": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
 
   "help": "Help",
   "help.about": "About",
