@@ -37,20 +37,13 @@ angular.module('app') //
 	// ACTIONS
 	$scope.login = function() {
 		$mdDialog.show(progressDialog);
-		$auth.login(
-			{
-				username: $scope.username,
-				password: $scope.password
-			})
-			.then(function(response) {
+		$auth.login($scope.user)
+			.then(function() {
 				$mdDialog.hide(progressDialog);
-				$rootScope.notifyLogin();
-				$location.url('/');
-				$route.reload();
+				$location.path('/');
 			})
 			.catch(function(error) {
 				$mdDialog.hide(progressDialog);
-				$rootScope.notifyLogout();
 				$mdDialog.show(errorDialog);
 			});
 	};

@@ -15,5 +15,8 @@ input:-webkit-autofill {
 
 /* 100% SCREEN HEIGHT *************************** */
 md-content, ng-view {
-  height: 100%;
+  height: 98%;
+}
+body {
+    overflow:hidden;
 }

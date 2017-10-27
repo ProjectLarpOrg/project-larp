@@ -23,7 +23,7 @@ td.truncated {
 }
 
 .app-home .app-bg {
-    background-image: url('/img/home-bg.jpg');
+    background-image: url('../img/home-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover; 
    

@@ -1,23 +1,12 @@
 'use strict';
 angular.module('app') //
 
-// https://material.angularjs.org/latest/demo/sidenav
-.directive('appNavbarContent', function() {
-	return {
-		controller : function($scope, $timeout, $mdSidenav, $log, $location) {
-		    $scope.close = function () {
-		        $mdSidenav('left').close();
-		    };
-		},
-		templateUrl : 'js/directives/navbar-content.html'
-	};
-})
-
-// https://material.angularjs.org/latest/demo/toolbar
-// https://material.angularjs.org/latest/demo/sidenav
+/**
+ * https://material.angularjs.org/latest/demo/toolbar
+ */
 .directive('appNavbar', function() {
 	return {
-		controller : function($scope, $timeout, $mdSidenav, $log, $sce) {
+		controller : function($scope, $timeout, $mdSidenav, $log, $sce, $auth, $mdMenu) {
 		    $scope.toggleLeft = buildToggler('left');
 		    
 		    function buildToggler(navID) {
@@ -31,18 +20,22 @@ angular.module('app') //
 				'en' : 'EN',
 				'fr' : 'FR'
 			};
+			var originatorEv;
+			
 			// ACTIONS
+			$scope.openMenu = function($mdMenu, ev) {
+		      originatorEv = ev;
+		      $mdMenu.open(ev);
+		    };
 			$scope.trustSrc = function(src) {
 				return $sce.trustAsResourceUrl(src);
-			}
-			// INIT
-			$scope.homeUrl = '#/';
-			$scope.aboutUrl = '#/about';
-			var originatorEv;
-			$scope.openMenu = function($mdOpenMenu, ev) {
-		      originatorEv = ev;
-		      $mdOpenMenu(ev);
+			};
+			$scope.isAuthenticated = function() {
+		      return $auth.isAuthenticated();
 		    };
+		    
+			// INIT
+
 		},
 		templateUrl : 'js/directives/navbar.html'
 	};

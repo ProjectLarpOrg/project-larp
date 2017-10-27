@@ -2,14 +2,14 @@
 <form id="signin" name="loginForm" ng-submit="login()" novalidate layout-padding>
 	
 	<md-input-container class="md-block" flex-gt-sm>
-		<input class="form-control input-lg" type="text" name="username"
-			ng-model="username" 
+		<input class="form-control input-lg" type="text" 
+		    name="username" ng-model="user.username" 
 			placeholder="Login" required autofocus>
 	</md-input-container>
 
 	<md-input-container class="md-block" flex-gt-sm>
 		<input server-error class="form-control input-lg" type="password"
-			name="password" ng-model="password" 
+			name="password" ng-model="user.password" 
 			placeholder="Password" required>
 	</md-input-container>
 

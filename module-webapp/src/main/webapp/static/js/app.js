@@ -1,18 +1,14 @@
 'use strict';
 
 angular.module('app', [ //
-	'ngResource', //
-	'ngRoute', //
-	'ngAnimate', //
-	'ngMaterial', //
+	'ngResource',  'ngRoute', //
+	'ngMaterial', 'ngAnimate', //
 	'satellizer', //
 	'md.data.table', //
 	'nvd3', //
-	'ngCookies', //
-	'pascalprecht.translate', //
-	'tmh.dynamicLocale', //
+	'pascalprecht.translate', 'tmh.dynamicLocale', 'ngCookies', //
 	'datePicker', //
-	'templates-main' //
+	'templates-main' // GENERATED/AGGREGATED template.js
 ])
 
 // CONFIG
@@ -21,8 +17,8 @@ angular.module('app', [ //
 	$routeProvider. //
 		when('/home',        { templateUrl : 'js/modules/home/home.html', resolve : { loginRequired : loginRequired }	}).
 		when('/about',       { templateUrl : 'js/modules/home/about.html'	}).
-		when('/auth/login',  { templateUrl : 'js/modules/auth/login.html'	}).
-		when('/auth/logout', { templateUrl : 'js/modules/auth/logout.html'	}).
+		when('/login',       { templateUrl : 'js/modules/auth/login.html'	}).
+		when('/logout',      { templateUrl : 'js/modules/auth/logout.html' }).
 		when('/help',        { templateUrl : 'js/modules/help/help.html', resolve : { loginRequired : loginRequired }	}).
 		otherwise('/home');
 	$locationProvider.hashPrefix('');
@@ -47,8 +43,8 @@ angular.module('app', [ //
 .config(function($mdIconProvider) {
 	$mdIconProvider //
 		.iconSet('action', 'angular/icons/sets/action-icons.svg', 24) //
-		.iconSet('alert', 'angular/icons/sets/alert-icons.svg', 24) //
 		/*
+		.iconSet('alert', 'angular/icons/sets/alert-icons.svg', 24) //
 		.iconSet('av', 'angular/icons/sets/av-icons.svg', 24) //
 		.iconSet('communication', 'angular/icons/sets/communication-icons.svg', 24) //
 		.iconSet('content', 'angular/icons/sets/content-icons.svg', 24) //
@@ -98,84 +94,10 @@ angular.module('app', [ //
   .useSanitizeValueStrategy('escape');
 })
 
-.factory("UserService", function($resource) {
-	return $resource('api/user');
-})
-
-.controller('AppController', function($scope, //
-		$auth, $rootScope, $location, UserService, $route, //
-		$locale, $cookieStore, $translate, $window, tmhDynamicLocale, tmhDynamicLocaleCache //
-		) {
-	// AUTH
-	$scope.isAuthenticated = function() {
-		return $auth.isAuthenticated();
-	};
-		
-	// PRIVATE
-	function changeLocale(key) {
-	    $rootScope.model = {selectedLocale: key};
-		// i18n (lang: en)
-	    $translate.use(key);
-	    // l10n (locale: yyyy-mm-dd, $, 0.000)
-	    tmhDynamicLocale.set(key);
-	    // display in toolbar
-	    $scope.selectedLocale = key;
-	}
-	function clearSession() {
-		var lang = getLocale();
-		$scope.session = {
-				user: {
-					iso639Language: lang
-				}
-		};
-		changeLocale(lang);
-	}
-	function initSession() {
-		UserService.get({ userId: $auth.getToken() }, function(response) {
-			$scope.session = ({
-				token : $auth.getToken(),
-				user : response
-			})
-			changeLocale($scope.session.user.iso639Language);
-		}, function(response) {
-		    $auth.logout().then(function() {
-				clearSession();
-				$location.url('/auth/login');
-				$route.reload();
-		    });
-		});
-	}
-	function getLocale() {
-		$rootScope.$locale = $locale;
-		var lang = $cookieStore.get('tmhDynamicLocale.locale');;
-		if(!lang) {
-			if($scope.session && $scope.session.user && $scope.session.user.iso639Language) {
-				lang = $scope.session.user.iso639Language;
-			} else {
-				lang = $window.navigator.language || $window.navigator.userLanguage;
-			}
-		}
-		lang = (lang.length>2) ? lang.substring(0,2) : lang;
-		return lang;
-	}
-	// ACTIONS
-	$rootScope.notifyLogin = function () {
-		initSession();
-	};
-	$rootScope.notifyLogout = function () {
-		clearSession();
-	};
-	$rootScope.changeLocale = function(key) {
-		changeLocale(key);
-	}
-	// INIT
-	if($auth.isAuthenticated()) {
-		initSession();
-	} else {
-		clearSession();
-	}
-});
-
+/**
+ * Helper auth functions
+ * https://github.com/sahat/satellizer/blob/master/examples/client/app.js
+ */
 function skipIfLoggedIn($q, $auth) {
 	var deferred = $q.defer();
 	if ($auth.isAuthenticated()) {
@@ -191,7 +113,7 @@ function loginRequired($q, $location, $auth, $route) {
 	if ($auth.isAuthenticated()) {
 		deferred.resolve();
 	} else {
-		$location.url('/auth/login');
+		$location.url('/login');
 		$route.reload();
 	}
 	return deferred.promise;

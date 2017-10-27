@@ -1,27 +1,40 @@
 <md-toolbar> 
   <div class="md-toolbar-tools"> 
   	
-    <md-button ng-href="{{::homeUrl}}">
+    <md-button ng-href="#/">
     	<img class="nav-brand" src="img/app-logo.png"> 
+   		<md-icon md-svg-icon="action:home"></md-icon> 
 	    <span>{{ 'home' | translate }} </span>
     </md-button>
     
-    <md-button ng-href="{{::aboutUrl}}">
+    <md-button ng-if="!isAuthenticated()" ng-href="#/about">
+   		<md-icon md-svg-icon="action:help"></md-icon> 
 	    <span>{{ 'about' | translate }} </span>
     </md-button>
     
-	<span flex></span> 
-		
-	<md-select ng-if="isAuthenticated()" id="langMenu" ng-model="selectedLocale" ng-change="changeLocale(selectedLocale)"> 
-		<md-option ng-repeat="(key, value) in locales" value="{{ ::key}}"> 
-			LANG:{{ ::value}} 
-		</md-option> 
-	</md-select> 
-	
-   	<md-button ng-if="isAuthenticated()" href="#/auth/logout"> 
-   		{{ 'logout' | translate }}
-   		<md-icon md-svg-icon="mdi:logout"></md-icon> 
-   	</md-button> 
+    <span flex></span> 
+    
+    <md-menu ng-if="isAuthenticated()">
+      <md-button ng-click="openMenu($mdMenu, $event)">
+   		<md-icon md-svg-icon="account:circle"></md-icon> 
+	    <span>{{ 'menu' | translate }} </span>
+      </md-button>
+      <md-menu-content width="0">
+        <md-menu-item>
+           	<md-button href="#/help"> 
+   				{{ 'help' | translate }}
+   				<md-icon md-svg-icon="action:help"></md-icon> 
+   			</md-button> 
+        </md-menu-item>
+        <md-menu-item>
+           	<md-button href="#/logout"> 
+   				{{ 'logout' | translate }}
+   				<md-icon md-svg-icon="mdi:logout"></md-icon> 
+   			</md-button> 
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+
    	
   </div> 
 </md-toolbar>
