@@ -12,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import com.google.common.base.Function;
-import com.google.common.base.Throwables;
 
 public class CSVExporter {
 
@@ -41,7 +40,7 @@ public class CSVExporter {
 				}
 			}
 		} catch (IOException e) {
-			throw Throwables.propagate(e);
+			throw new RuntimeException(e);
 		}
 	}
 	
@@ -73,7 +72,7 @@ public class CSVExporter {
 				}
 			}
 		} catch (IOException e) {
-			throw Throwables.propagate(e);
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -87,7 +86,7 @@ public class CSVExporter {
 			}
 			return fields;
 		} catch (NoSuchFieldException e) {
-			throw Throwables.propagate(e);
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -131,9 +130,9 @@ public class CSVExporter {
 			writer.append(END2);
 			return writer;
 		} catch (IllegalAccessException e) {
-			throw Throwables.propagate(e);
+			throw new RuntimeException(e);
 		} catch (IOException e) {
-			throw Throwables.propagate(e);
+			throw new RuntimeException(e);
 		}
 	}
 

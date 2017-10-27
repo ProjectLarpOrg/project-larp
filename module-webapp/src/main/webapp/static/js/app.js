@@ -31,8 +31,8 @@ angular.module('app', [ //
 	$authProvider.cordova = false;
 	$authProvider.baseUrl = './api/';
 	$authProvider.loginUrl = '/auth/login';
-	$authProvider.signupUrl = '/auth/signup';
-	$authProvider.unlinkUrl = '/auth/unlink/';
+	$authProvider.signupUrl = '/auth/signup'; // TODO ???
+	$authProvider.unlinkUrl = '/auth/unlink/'; // TODO ???
 	$authProvider.tokenName = 'token';
 	$authProvider.tokenPrefix = 'project_larp';
 	$authProvider.authHeader = 'Authorization';

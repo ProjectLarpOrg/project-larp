@@ -16,20 +16,20 @@
     
     <md-menu ng-if="isAuthenticated()">
       <md-button ng-click="openMenu($mdMenu, $event)">
-   		<md-icon md-svg-icon="account:circle"></md-icon> 
+   		<md-icon md-svg-icon="action:account_circle"></md-icon> 
 	    <span>{{ 'menu' | translate }} </span>
       </md-button>
       <md-menu-content width="0">
         <md-menu-item>
            	<md-button href="#/help"> 
-   				{{ 'help' | translate }}
    				<md-icon md-svg-icon="action:help"></md-icon> 
+   				{{ 'help' | translate }}
    			</md-button> 
         </md-menu-item>
         <md-menu-item>
            	<md-button href="#/logout"> 
-   				{{ 'logout' | translate }}
    				<md-icon md-svg-icon="mdi:logout"></md-icon> 
+   				{{ 'logout' | translate }}
    			</md-button> 
         </md-menu-item>
       </md-menu-content>

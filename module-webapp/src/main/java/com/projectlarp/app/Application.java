@@ -1,21 +1,28 @@
 package com.projectlarp.app;
 
 import org.springframework.boot.Banner;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.web.WebApplicationInitializer;
 
-import com.projectlarp.app.config.ApplicationConfig;
-import com.projectlarp.app.modules.ModulesConfig;
-
 /**
- * @see https://spring.io/blog/2014/03/07/deploying-spring-boot-applications
+ * @see origin
+ *      https://spring.io/blog/2014/03/07/deploying-spring-boot-applications
+ * 
+ * @see origin http://www.baeldung.com/spring-boot-custom-auto-configuration
  */
 @SpringBootApplication(scanBasePackageClasses = { //
-		ApplicationConfig.class, //
-		ModulesConfig.class })
+		com.projectlarp.app.config.Package.class, //
+		com.projectlarp.app.modules.Package.class })
+@EnableAutoConfiguration
+// @EnableOAuth2Client
+@EnableAuthorizationServer
 @EnableScheduling
 public class Application extends SpringBootServletInitializer implements WebApplicationInitializer {
 
