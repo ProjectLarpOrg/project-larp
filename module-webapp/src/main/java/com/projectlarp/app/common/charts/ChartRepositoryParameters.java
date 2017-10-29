@@ -2,27 +2,31 @@ package com.projectlarp.app.common.charts;
 
 import java.sql.Timestamp;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class ChartRepositoryParameters {
 
-	private Timestamp startDateMin;
-	private Timestamp startDateMax;
+	public Timestamp startDateMin;
+	public Timestamp startDateMax;
 
-	private String appCode;
-	private String serviceName;
-	private String functionName;
+	public String appCode;
+	public String serviceName;
+	public String functionName;
 
-	private Integer n;
+	public Integer n;
 
-	public ChartRepositoryParameters(Timestamp startDateMin,
-			Timestamp startDateMax) {
+	public ChartRepositoryParameters(Timestamp startDateMin, Timestamp startDateMax) {
 		this.startDateMin = startDateMin;
 		this.startDateMax = startDateMax;
 	}
+
+	public ChartRepositoryParameters(Timestamp startDateMin, Timestamp startDateMax, String appCode, String serviceName,
+			String functionName, Integer n) {
+		super();
+		this.startDateMin = startDateMin;
+		this.startDateMax = startDateMax;
+		this.appCode = appCode;
+		this.serviceName = serviceName;
+		this.functionName = functionName;
+		this.n = n;
+	}
+
 }

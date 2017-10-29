@@ -1,7 +1,5 @@
 package com.projectlarp.app.common.charts;
 
-import static com.google.common.base.Preconditions.checkState;
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,7 +34,7 @@ public class ChartRepositoryHelper {
 				dataSource);
 		SqlParameterSource np = new BeanPropertySqlParameterSource(p);
 		String precision = String.valueOf(intervalPrecision(
-				p.getStartDateMin(), p.getStartDateMax()));
+				p.startDateMin, p.startDateMax));
 		String nsql = sql.replaceAll(":precision", precision);
 		return t.query(nsql, np, new BeanPropertyRowMapper(rowClass));
 	}
@@ -64,7 +62,7 @@ public class ChartRepositoryHelper {
 			@Override
 			public int compare(ChartObjectPoint item1, ChartObjectPoint item2) {
 
-				return item1.getX().compareTo(item2.getX());
+				return item1.x.compareTo(item2.x);
 			}
 		});
 		return list2;
@@ -74,18 +72,17 @@ public class ChartRepositoryHelper {
 			List<ChartObjectPoint> incomplete, List<ChartObjectPoint> reference) {
 		List<ChartObjectPoint> complete = new ArrayList<ChartObjectPoint>();
 		for (ChartObjectPoint ref : reference) {
-			ChartObjectPoint completeItem = hasX(incomplete, ref.getX()) //
-			? findByX(incomplete, ref.getX())
-					: new ChartObjectPoint(ref.getX(), 0L);
+			ChartObjectPoint completeItem = hasX(incomplete, ref.x) //
+			? findByX(incomplete, ref.x)
+					: new ChartObjectPoint(ref.x, 0L);
 			complete.add(completeItem);
 		}
-		checkState(complete.size() == reference.size());
 		return complete;
 	}
 	
 	public static ChartObjectPoint findByX(List<ChartObjectPoint> list, Long x) {
 		for (ChartObjectPoint item : list) {
-			if (x.equals(item.getX())) {
+			if (x.equals(item.x)) {
 				return item;
 			}
 		}
@@ -94,7 +91,7 @@ public class ChartRepositoryHelper {
 
 	private static boolean hasX(List<ChartObjectPoint> list, Long x) {
 		for (ChartObjectPoint item : list) {
-			if (x.equals(item.getX())) {
+			if (x.equals(item.x)) {
 				return true;
 			}
 		}

@@ -5,7 +5,6 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
 /**
  * @see origin
@@ -29,14 +28,14 @@ public class SpringDataJpaUserDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException(username);
 		}
 		return new org.springframework.security.core.userdetails.User( //
-				user.getUsername(), //
-				user.getPassword(), //
-				user.isEnabled(), //
-				user.isAccountNonExpired(), //
-				user.isCredentialsNonExpired(), //
-				user.isAccountNonLocked(), //
+				user.username, //
+				user.password, //
+				user.enabled, //
+				user.accountNonExpired, //
+				user.credentialsNonExpired, //
+				user.accountNonLocked, //
 				AuthorityUtils.createAuthorityList( //
-						user.getRoles() //
+						user.roles //
 								.stream() //
 								.map(i -> i.getRole()) //
 								.toArray(String[]::new)));

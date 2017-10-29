@@ -46,12 +46,12 @@ public class SearchHelperTest {
 	@Test
 	public void test_date_format() {
 		assertThat(SearchHelper.timestamp("2016-08-16T13:03:09.552Z")) //
-		.isWithinYear(2016)
-		.isWithinMonth(8)
-		.isWithinDayOfMonth(16)
-		.isWithinHourOfDay(13)
-		.isWithinMinute(3)
-		.isWithinSecond(9)
-		.isWithinMillisecond(552);
+		.hasYear(2016)
+		.hasMonth(8)
+		.hasDayOfMonth(16)
+		.hasHourOfDay(13)
+		.hasMinute(3)
+		.hasSecond(9)
+		.hasMillisecond(552);
 	}
 }

@@ -1,17 +1,15 @@
 package com.projectlarp.app.common.search;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
 
 import org.springframework.data.domain.Page;
 
-import com.google.common.base.Function;
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
+import com.projectlarp.app.common.lang.StringUtils;
 
 public class SearchHelper {
 
@@ -22,7 +20,12 @@ public class SearchHelper {
 		checkArgument(fromDate != null, errorMessage);
 		checkArgument(toDate != null, errorMessage);
 	}
-
+	
+	public static void checkArgument(boolean condition, String errorMessage) {
+		if(condition)
+			throw new IllegalArgumentException(errorMessage);
+	}
+	
 	public static Timestamp timestamp(String date) {
 		SimpleDateFormat sdf = new SimpleDateFormat(ISODateTime);
 		try {
@@ -53,7 +56,8 @@ public class SearchHelper {
 		return new Function<Iterable<T>, SpringRESTResponse<T>>() {
 			@Override
 			public SpringRESTResponse<T> apply(Iterable<T> input) {
-				ArrayList<T> list = Lists.newArrayList(input);
+				List<T> list = new ArrayList<>();
+				input.forEach(list::add);
 				return new SpringRESTResponse<T>( //
 						new SpringRESTResponseEmbedded<T>( //
 								list), //
@@ -118,7 +122,7 @@ public class SearchHelper {
 			str = str.substring(beginIndex + 1, endIndex);
 		}
 
-		if (Strings.isNullOrEmpty(str)) {
+		if (StringUtils.isBlank(str)) {
 			return true;
 		}
 

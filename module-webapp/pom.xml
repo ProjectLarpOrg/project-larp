@@ -184,25 +184,6 @@
 		<!-- SERVER -->
 		<!-- ********************************************* -->
 
-		<!-- LANGUAGE EXTENSION -->
-
-		<!-- GET/SET GENERATOR -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
-		<!-- FUNCTIONNAL AND STREAM -->
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>23.0</version>
-		</dependency>
-		<!-- DATETIME -->
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-		</dependency>
-
 		<!-- JAVA SERVER -->
 
 		<!-- CONTAINER -->
@@ -288,6 +269,13 @@
 					<include>build.properties</include>
 					<include>application.properties</include>
 					<include>log4j.properties</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/webapp/static</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>index.html</include>
 				</includes>
 			</resource>
 			<!-- REPLACE ALL FOR WEBJARS URLS -->

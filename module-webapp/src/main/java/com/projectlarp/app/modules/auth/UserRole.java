@@ -10,13 +10,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 @Entity
 @Table(name = "USER_ROLE")
-@Data
-@EqualsAndHashCode(callSuper = false)
 public class UserRole {
     @Embeddable
     public static class Id implements Serializable {

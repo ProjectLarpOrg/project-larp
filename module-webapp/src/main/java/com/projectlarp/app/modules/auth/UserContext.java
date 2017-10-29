@@ -1,10 +1,8 @@
 package com.projectlarp.app.modules.auth;
 
 import java.util.List;
-
 import org.springframework.security.core.GrantedAuthority;
-
-import com.google.common.base.Strings;
+import com.projectlarp.app.common.lang.StringUtils;
 
 public class UserContext {
 	private final String username;
@@ -16,7 +14,7 @@ public class UserContext {
 	}
 
 	public static UserContext create(String username, List<GrantedAuthority> authorities) {
-		if (Strings.isNullOrEmpty(username))
+		if (StringUtils.isBlank(username))
 			throw new IllegalArgumentException("Username is blank: " + username);
 		return new UserContext(username, authorities);
 	}

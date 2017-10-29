@@ -1,6 +1,7 @@
 package com.projectlarp.app.modules.auth;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.FilterChain;
@@ -16,16 +17,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.filter.GenericFilterBean;
 
-import com.google.common.collect.ImmutableList;
-
 /**
  * @see origin
  *      https://javattitude.com/2014/06/07/spring-security-custom-token-based-rest-authentication/
  */
 public class SpringTokenAuthenticationFilter extends GenericFilterBean {
 
-	private List<GrantedAuthority> authorities = ImmutableList.of( //
-			new SimpleGrantedAuthority("grandmaster"));
+	private List<GrantedAuthority> authorities = Arrays.asList( //
+			new SimpleGrantedAuthority("grandmaster") //
+	);
 
 	@Override
 	public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain chain)

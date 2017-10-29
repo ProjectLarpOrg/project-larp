@@ -36,8 +36,8 @@ public class AuthController {
 			@RequestBody Auth user) {
 
 		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken( //
-				user.getUsername(), //
-				user.getPassword());
+				user.username, //
+				user.password);
 		try {
 			Authentication auth = authenticationManager.authenticate(token);
 			SecurityContextHolder.getContext().setAuthentication(auth);
