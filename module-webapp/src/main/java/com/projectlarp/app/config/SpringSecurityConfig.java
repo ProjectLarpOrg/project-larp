@@ -2,9 +2,12 @@ package com.projectlarp.app.config;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.projectlarp.app.modules.auth.JsonAuthenticationFilter;
+import com.projectlarp.app.modules.auth.SpringDataJpaUserDetailsService;
 
 /**
  * Actions:. <br/>
@@ -36,8 +40,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-	    http.addFilterBefore(jsonAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-	    http.csrf().disable();//
+		http.addFilterBefore(jsonAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+		http.csrf().disable();//
 		http //
 				// .antMatcher("/**") //
 				.authorizeRequests() //
@@ -60,27 +64,29 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	/**
-	 * @see origin
-	 *      http://www.baeldung.com/spring-security-authentication-with-a-
+	 * @see origin http://www.baeldung.com/spring-security-authentication-with-a-
 	 *      database
 	 */
-	/*
-	 * @Autowired private SpringDataJpaUserDetailsService userDetailsService;
-	 */
-	/*
-	 * @Override public void configure(final AuthenticationManagerBuilder auth)
-	 * throws Exception { auth //
-	 * .authenticationProvider(authenticationProvider()) //
-	 * .userDetailsService(userDetailsService) //
-	 * .passwordEncoder(passwordEncoder()) // ; }
-	 */
-	/*
-	 * @Bean public DaoAuthenticationProvider authenticationProvider() {
-	 * DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-	 * authProvider.setUserDetailsService(userDetailsService);
-	 * authProvider.setPasswordEncoder(passwordEncoder()); return authProvider;
-	 * }
-	 */
+
+	@Autowired
+	private SpringDataJpaUserDetailsService userDetailsService;
+
+	@Override
+	public void configure(final AuthenticationManagerBuilder auth) throws Exception {
+		auth //
+				.authenticationProvider(authenticationProvider()) //
+				.userDetailsService(userDetailsService) //
+				.passwordEncoder(passwordEncoder());
+	}
+
+	@Bean
+	public DaoAuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+		authProvider.setUserDetailsService(userDetailsService);
+		authProvider.setPasswordEncoder(passwordEncoder());
+		return authProvider;
+	}
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder(11);

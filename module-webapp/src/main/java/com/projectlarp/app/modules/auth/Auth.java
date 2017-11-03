@@ -4,6 +4,6 @@ package com.projectlarp.app.modules.auth;
 
 
 public class Auth {
-	String username;
-	String password;
+	public String username;
+	public String password;
 }

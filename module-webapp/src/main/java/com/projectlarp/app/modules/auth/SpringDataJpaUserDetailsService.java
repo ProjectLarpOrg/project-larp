@@ -5,6 +5,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 /**
  * @see origin
@@ -15,7 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  *      frontend/src/main/java/com/greglturnquist/springagram/frontend/
  *      SpringDataJpaUserDetailsService.java
  */
-//@Service
+@Service
 public class SpringDataJpaUserDetailsService implements UserDetailsService {
 
 	@Autowired
