@@ -1,7 +1,6 @@
 package com.projectlarp.app.modules.auth;
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,11 +40,10 @@ public class AuthController {
 		try {
 			Authentication auth = authenticationManager.authenticate(token);
 			SecurityContextHolder.getContext().setAuthentication(auth);
-
 			AuthResponse response = new AuthResponse(token.toString());
 			return new ResponseEntity<AuthResponse>(response, OK);
 		} catch (BadCredentialsException ex) {
-			return new ResponseEntity<AuthResponse>(BAD_REQUEST);
+			return new ResponseEntity<AuthResponse>(UNAUTHORIZED);
 		}
 	}
 }
