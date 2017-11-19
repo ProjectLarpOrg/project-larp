@@ -40,6 +40,9 @@ angular.module('app', [ //
 	$authProvider.storageType = 'localStorage';
 })
 
+/**
+ * https://material.io/icons/
+ */
 .config(function($mdIconProvider) {
 	$mdIconProvider //
 		.iconSet('action', 'angular/icons/sets/action-icons.svg', 24) //
