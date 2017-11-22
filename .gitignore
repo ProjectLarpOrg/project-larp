@@ -1,0 +1,15 @@
+# JAVA
+*.class
+*.war
+*.ear
+target
+
+# JAVA : ECLIPSE
+.classpath
+.project
+.settings
+bin
+
+# JAVA : INTELLIJ
+.idea
+*.iml
