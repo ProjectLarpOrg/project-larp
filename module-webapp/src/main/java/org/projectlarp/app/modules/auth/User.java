@@ -2,7 +2,7 @@ package org.projectlarp.app.modules.auth;
 
 import java.util.*;
 import javax.persistence.*;
-import com.projectlarp.app.common.domain.*;
+import org.projectlarp.app.common.domain.*;
 import org.projectlarp.app.common.domain.AbstractDomainClass;
 
 @Entity

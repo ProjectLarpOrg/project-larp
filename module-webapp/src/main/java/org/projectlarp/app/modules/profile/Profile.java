@@ -1,7 +1,7 @@
 package org.projectlarp.app.modules.profile;
 
 import javax.persistence.*;
-import com.projectlarp.app.common.domain.*;
+import org.projectlarp.app.common.domain.*;
 import org.projectlarp.app.common.domain.AbstractDomainClass;
 
 @Entity

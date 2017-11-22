@@ -13,3 +13,6 @@ bin
 # JAVA : INTELLIJ
 .idea
 *.iml
+
+# CUSTOM
+db
