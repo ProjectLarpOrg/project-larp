@@ -6,12 +6,17 @@
    		<md-icon md-svg-icon="action:home"></md-icon> 
 	    <span>{{ 'home' | translate }} </span>
     </md-button>
-    
-    <md-button ng-if="!isAuthenticated()" ng-href="#/about">
-   		<md-icon md-svg-icon="action:help"></md-icon> 
-	    <span>{{ 'about' | translate }} </span>
-    </md-button>
-    
+
+      <md-button ng-if="!isAuthenticated()" ng-href="#/about">
+          <md-icon md-svg-icon="action:help"></md-icon>
+          <span>{{ 'about' | translate }} </span>
+      </md-button>
+
+      <md-button ng-if="isAuthenticated()" ng-href="#/admin">
+          <md-icon md-svg-icon="hardware:security"></md-icon>
+          <span>{{ 'admin' | translate }} </span>
+      </md-button>
+
     <span flex></span> 
     
     <md-menu ng-if="isAuthenticated()">
@@ -20,18 +25,35 @@
 	    <span>{{ 'menu' | translate }} </span>
       </md-button>
       <md-menu-content width="0">
+      
+        <md-menu-item>
+           	<md-button href="#/profile"> 
+   				<md-icon md-svg-icon="action:account_circle"></md-icon> 
+   				{{ 'profile' | translate }}
+   			</md-button> 
+        </md-menu-item>
+        
+        <md-divider ></md-divider>
+
+        <md-menu-item>
+           	<md-button href="#/settings"> 
+   				{{ 'settings' | translate }}
+   			</md-button> 
+        </md-menu-item>
         <md-menu-item>
            	<md-button href="#/help"> 
-   				<md-icon md-svg-icon="action:help"></md-icon> 
    				{{ 'help' | translate }}
    			</md-button> 
         </md-menu-item>
+        
+        <md-divider ></md-divider>
+
         <md-menu-item>
            	<md-button href="#/logout"> 
-   				<md-icon md-svg-icon="mdi:logout"></md-icon> 
    				{{ 'logout' | translate }}
    			</md-button> 
         </md-menu-item>
+        
       </md-menu-content>
     </md-menu>
 

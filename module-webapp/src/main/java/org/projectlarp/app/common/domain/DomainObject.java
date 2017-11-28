@@ -7,7 +7,7 @@ package org.projectlarp.app.common.domain;
  */
 public interface DomainObject {
 
-	Integer getId();
+	Long getId();
 
-	void setId(Integer id);
+	void setId(Long id);
 }

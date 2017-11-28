@@ -17,7 +17,7 @@ public class UserRole {
     public static class Id implements Serializable {
         private static final long serialVersionUID = 1322120000551624359L;
         
-        @Column(name = "APP_USER_ID")
+        @Column(name = "USER_ID")
         protected Long userId;
         
         @Enumerated(EnumType.STRING)

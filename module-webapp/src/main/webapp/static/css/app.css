@@ -38,3 +38,8 @@ td.truncated {
     font-weight: bold;
 }
 
+
+.app-icon-80 {
+	height: 80px !important;
+	width: 80px !important;
+}

@@ -1,0 +1,21 @@
+<md-list>
+
+  <md-subheader class="md-no-sticky">{{ 'settings' | translate }}</md-subheader>
+  <md-divider></md-divider>
+  
+  <md-list-item ng-click="scrollTo('account')">
+	<md-icon md-svg-icon="action:perm_identity"></md-icon>
+    <p> {{ 'account' | translate }}</p>
+  </md-list-item>
+  
+  <md-list-item ng-click="scrollTo('password')">
+    <md-icon md-svg-icon="action:lock_outline"></md-icon>
+    <p> {{ 'password' | translate }}</p>
+  </md-list-item>
+
+  <md-list-item ng-click="scrollTo('preferences')">
+    <md-icon md-svg-icon="action:settings"></md-icon>
+    <p> {{ 'preferences' | translate }}</p>
+  </md-list-item>
+
+</md-list>

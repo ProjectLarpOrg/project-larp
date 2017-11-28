@@ -1,27 +1,38 @@
 {
   "app.name": "Project LARP",
 
-  "logout": "Logout",
   "open": "Open",
   "more": "More",
   "hide": "Hide",
   "got_it": "Got it!",
+  "required": "Required",
 
   "pagination.of": "of",
   "pagination.page": "Page:",
   "pagination.rowsperpage": "Rows per page:",
 
-  "navbar.home": "Home",
-  "navbar.help": "Help",
-  "navbar.service_flow": "Service Flow",
-  "navbar.exchanges": "Exchanges",
-  "navbar.error_flow": "Error Flow",
-  "navbar.service_traffic": "Service Traffic",
-  "navbar.error_count": "Error Count",
-  "navbar.service_response": "Response Time",
-  "navbar.cache_count": "Cache Ratio",
-  "navbar.resubmit": "Reject/Resubmit",
-
+  "menu": "Menu",
+  "profile": "Profile",
+  "settings": "Settings",
+  "logout": "Logout",
+  
+  "account": "Account",
+  "name": "Name",
+  "user": "User",
+  "username": "User name",
+  "phonenumber": "Phone Number",
+  "email": "EMail",
+  "email.error": "Your email must be between 10 and 100 characters long and look like an e-mail address.",
+  "language": "Language",
+  "private": "Private",
+  "private_infos": "Private Informations",
+  "bio": "Bio",
+  "password": "Password",
+  "save changes": "Save changes",
+  "preferences": "Preferences",
+  "theme": "Theme",
+  "role": "Role",
+  
   "toolbar.back": "Go Back",
 
   "loading": "Loading datas...",
@@ -55,7 +66,6 @@
   "about.content": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
 
   "help": "Help",
-  "help.about": "About",
   "help.copyright": "Designed by Project LARP Team",
   "help.help": "General Help",
   "help.get_help": "Get help with using this software",
@@ -63,6 +73,13 @@
   
   "help.manual.back": "Back to top",
   "help.manual.XXX.XXX": "XXX",
+
+  "admin": "Admin",
+  "admin.content": "This the admin page, where you can add or deactivate users and user's roles.",
+
+  "users": "Users",
+  "users.desc": "Manage users...",
+
 
   "XXX.search": "XXX",
   "XXX.search.resubmit": "XXX",

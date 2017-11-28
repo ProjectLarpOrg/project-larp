@@ -20,7 +20,7 @@ public class AbstractDomainClass implements DomainObject {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Integer id;
+	Long id;
 
 	@Version
 	private Integer version;
@@ -29,12 +29,12 @@ public class AbstractDomainClass implements DomainObject {
 	private Date lastUpdated;
 
 	@Override
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 
 	@Override
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

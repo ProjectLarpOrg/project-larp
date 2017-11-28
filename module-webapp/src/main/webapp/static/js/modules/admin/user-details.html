@@ -1,0 +1,50 @@
+<div ng-controller="UserDetailsController">
+
+<md-toolbar>
+	<div class="md-toolbar-tools">
+
+		<md-button ng-href="#/admin/users">
+		    <md-icon md-svg-icon="hardware:keyboard_arrow_left"></md-icon>
+			{{'back'|translate}}
+			{{ 'list' | translate }}
+		</md-button>
+
+	</div>
+</md-toolbar>
+
+
+ <md-content layout-padding>
+  <form name="userForm">
+
+	  	<h2 class="md-title">{{ 'user' | translate }}</h2>
+	  	
+        <md-input-container class="md-block">
+          <label>{{ 'username' | translate }}</label>
+          <input ng-model="user.username"
+          	required>
+          <div ng-messages="projectForm.clientName.$error">
+            <div ng-message="required">{{ 'required' | translate }}</div>
+          </div>
+        </md-input-container>
+        
+        <md-input-container class="md-block">
+          <label>{{ 'EMail' | translate }}</label>
+          <input ng-model="user.email"
+          	required type="email" name="email"
+          	minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+			<div ng-messages="userForm.email.$error" role="alert">
+	          <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+	            {{ 'email.error' | translate }}
+	          </div>
+	        </div>
+        </md-input-container>
+
+		<md-button class="md-primary md-raised" type="submit" 
+			ng-disabled="userForm.$invalid || userForm.$pending">
+			<md-icon md-svg-icon="action:done"></md-icon>
+			{{ 'Save changes' | translate }}
+		</md-button>
+
+  </form>
+  </md-content>
+</div>

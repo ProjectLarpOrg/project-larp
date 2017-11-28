@@ -13,15 +13,9 @@
 
   "navbar.home": "Accueil",
   "navbar.help": "Aide",
-  "navbar.service_flow": "Service Flux",
-  "navbar.exchanges": "Exchanges",
-  "navbar.error_flow": "Erreur Flux",
-  "navbar.service_traffic": "Service Trafic",
-  "navbar.error_count": "Erreurs Histo",
-  "navbar.service_response": "Temps de réponse",
-  "navbar.cache_count": "Cache Usage",
-  "navbar.resubmit": "Rejet/Rejeu",
-
+  "navbar.profile": "Profile",
+  "navbar.settings": "Param�tres",
+  
   "toolbar.back": "Retour",
 
   "loading": "Chargement des données...",

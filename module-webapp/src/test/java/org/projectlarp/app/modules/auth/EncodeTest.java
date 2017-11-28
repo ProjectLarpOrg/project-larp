@@ -1,4 +1,4 @@
-package org.projectlarp.app.common.search;
+package org.projectlarp.app.modules.auth;
 
 import org.junit.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -9,8 +9,8 @@ public class EncodeTest {
 	@Test
 	public void test() {
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String hashedPassword = passwordEncoder.encode("admin");
-		System.out.println(hashedPassword);
+		for (String username : new String[]{"admin", "user1", "user2"})
+			System.out.println(String.format("%s %s", username, passwordEncoder.encode(username)));
 	}
 	
 }

@@ -1,0 +1,25 @@
+<div ng-controller="PreferencesController">
+<md-content layout-padding id="account">
+
+  <form name="preferencesForm">
+
+	  	<h2 class="md-title">{{ 'preferences' | translate }}</h2>
+	  	
+        <md-input-container class="md-block">
+          <label>{{ 'theme' | translate }}</label>
+           <md-select ng-model="user.theme">
+              <md-option ng-repeat="theme in themes" value="{{theme.abbrev}}">
+                {{theme.abbrev}}
+              </md-option>
+            </md-select>
+        </md-input-container>
+
+		<md-button class="md-primary md-raised" type="submit" ng-disabled="true">
+			<md-icon md-svg-icon="content:save"></md-icon>
+			{{ 'Save changes' | translate }}
+		</md-button>
+
+  </form>
+      
+</md-content>
+</div>

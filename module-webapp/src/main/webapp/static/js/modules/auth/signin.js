@@ -1,5 +1,5 @@
 'use strict';
-angular.module('app') //
+angular.module('app-auth') //
 
 .controller('SigninController', function($scope, $rootScope, $auth, $location, $route, $mdDialog) {
 	// CONST
