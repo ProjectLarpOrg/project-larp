@@ -13,9 +13,9 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<packaging>war</packaging>
-    <scm>
-        <url>https://github.com/ProjectLarpOrg/project-larp</url>
-    </scm>
+	<scm>
+		<url>https://github.com/ProjectLarpOrg/project-larp</url>
+	</scm>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>8</java.version>
@@ -55,7 +55,7 @@
 		<!-- ********************************************* -->
 		<!-- APP -->
 		<!-- ********************************************* -->
-		
+
 		<!-- ANGULAR -->
 		<dependency>
 			<artifactId>angular</artifactId>
@@ -70,6 +70,11 @@
 		<dependency>
 			<groupId>org.webjars.bower</groupId>
 			<artifactId>angular-route</artifactId>
+			<version>${angular.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>angular-animate</artifactId>
 			<version>${angular.version}</version>
 		</dependency>
 		<!-- MATERIAL -->
