@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @see https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot
  */
 @Configuration
-public class SpringWebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig extends WebMvcConfigurerAdapter {
 
 	private static final String[] RESOURCE_LOCATIONS = { //
 			"classpath:/META-INF/resources/", "classpath:/resources/", //

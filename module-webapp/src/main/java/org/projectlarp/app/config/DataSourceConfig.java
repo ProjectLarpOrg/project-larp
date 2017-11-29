@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.*;
 import org.springframework.jdbc.core.*;
 
 @Configuration
-public class SpringDataSourceConfig {
+public class DataSourceConfig {
 
 	@Bean
 	public JdbcTemplate jdbcTemplate(DataSource dataSource) {

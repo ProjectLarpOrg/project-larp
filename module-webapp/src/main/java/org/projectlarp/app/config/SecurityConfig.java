@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import org.projectlarp.app.modules.auth.JsonAuthenticationFilter;
 import org.projectlarp.app.modules.auth.SpringDataJpaUserDetailsService;
+import org.springframework.security.core.userdetails.User;
 
 /**
  * Actions:. <br/>
@@ -36,8 +37,19 @@ import org.projectlarp.app.modules.auth.SpringDataJpaUserDetailsService;
 @Configuration
 @ConditionalOnClass(DataSource.class)
 @EnableWebSecurity
-public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private DataSource dataSource;
+	
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth
+			.jdbcAuthentication()
+				.dataSource(dataSource)
+				.withDefaultSchema();
+	}
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.addFilterBefore(jsonAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
