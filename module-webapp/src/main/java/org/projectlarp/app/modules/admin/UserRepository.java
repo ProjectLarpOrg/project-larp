@@ -1,10 +1,10 @@
-package org.projectlarp.app.modules.auth;
+package org.projectlarp.app.modules.admin;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-import org.springframework.data.repository.query.Param;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 /**
@@ -15,7 +15,8 @@ import org.springframework.data.rest.core.annotation.RestResource;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	User findByUsername(String username);
-	
+	User findByToken(String token);
+
 	@RestResource(path = "filter", rel = "filters")
 	Page<User> findAllByUsernameLikeIgnoreCase( //
 			@Param("username") String username, //

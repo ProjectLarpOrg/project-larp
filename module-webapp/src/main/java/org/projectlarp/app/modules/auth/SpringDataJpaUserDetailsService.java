@@ -1,5 +1,7 @@
 package org.projectlarp.app.modules.auth;
 
+import org.projectlarp.app.modules.admin.User;
+import org.projectlarp.app.modules.admin.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,16 +31,12 @@ public class SpringDataJpaUserDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException(username);
 		}
 		return new org.springframework.security.core.userdetails.User( //
-				user.username, //
-				user.password, //
-				user.enabled, //
-				user.accountNonExpired, //
-				user.credentialsNonExpired, //
-				user.accountNonLocked, //
-				AuthorityUtils.createAuthorityList( //
-						user.roles //
-								.stream() //
-								.map(i -> i.getRole()) //
-								.toArray(String[]::new)));
+				user.getUsername(), //
+				user.getPassword() , //
+				user.isEnabled(), //
+				user.isAccountNonExpired(), //
+				user.isCredentialsNonExpired(), //
+				user.isAccountNonLocked(), //
+				AuthorityUtils.createAuthorityList("ADMIN"));
 	}
 }

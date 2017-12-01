@@ -22,7 +22,8 @@
   "username": "User name",
   "phonenumber": "Phone Number",
   "email": "EMail",
-  "email.error": "Your email must be between 10 and 100 characters long and look like an e-mail address.",
+  "email.validation": "Your email must be between 10 and 100 characters long and look like an e-mail address.",
+  "password.validation": "Your password must be between 10 and 100 characters long.",
   "language": "Language",
   "private": "Private",
   "private_infos": "Private Informations",
@@ -56,7 +57,7 @@
   "login.signup": "Can't login? please sign up.",
     
   "signup": "Sign up",
-  "signup.message": "Please ask the organisators first",
+  "signup.message": "Do not have an account yet ?",
   "signup.submit": "Contact",
 
   "home": "Home",

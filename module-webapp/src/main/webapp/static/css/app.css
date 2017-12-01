@@ -38,8 +38,28 @@ td.truncated {
     font-weight: bold;
 }
 
-
 .app-icon-80 {
 	height: 80px !important;
 	width: 80px !important;
+}
+
+/* SOCIAL BUTTONS (GOOGLE, FACEBOOK, ETC) */
+.md-button.md-raised.app-social {
+	width: 100% !important;
+}
+.md-button.md-raised.app-social,
+.md-button.md-raised.app-social md-icon{
+    color: white !important;
+}
+.md-button.md-raised.app-google:not([disabled]),
+.md-button.md-raised.app-google:not([disabled]):hover {
+    background-color: #c72020f5 !important;
+}
+.md-button.md-raised.app-twitter:not([disabled]),
+.md-button.md-raised.app-twitter:not([disabled]):hover {
+    background-color: #55acee !important;
+}
+.md-button.md-raised.app-facebook:not([disabled]),
+.md-button.md-raised.app-facebook:not([disabled]):hover {
+    background-color: #3B5998 !important;
 }

@@ -29,12 +29,11 @@ angular.module('app', [ //
 		// ADMIN
 		when('/admin',       			{ templateUrl : 'js/modules/admin/admin.html', viewUrl: 'js/modules/admin/index.html', resolve : { loginRequired : loginRequired }	}).
 		when('/admin/users', 			{ templateUrl : 'js/modules/admin/admin.html', viewUrl: 'js/modules/admin/user-list.html', resolve : { loginRequired : loginRequired }	}).
-		when('/admin/users/:userId', 	{ templateUrl : 'js/modules/admin/admin.html', viewUrl: 'js/modules/admin/user-details.html', resolve : { loginRequired : loginRequired }	}).
-		when('/admin/users-create', 	{ templateUrl : 'js/modules/admin/admin.html', viewUrl: 'js/modules/admin/user-details.html', resolve : { loginRequired : loginRequired }	}).
 		// PROFILE
 		when('/profile',     { templateUrl : 'js/modules/profile/profile.html', resolve : { loginRequired : loginRequired }	}).
 		// SETTINGS
 		when('/settings',    { templateUrl : 'js/modules/settings/settings.html', resolve : { loginRequired : loginRequired }	}).
+		when('/settings/:userId',    { templateUrl : 'js/modules/settings/settings.html', resolve : { loginRequired : loginRequired }	}).
 		//
 		otherwise('/home');
 	$locationProvider.hashPrefix('');
@@ -49,7 +48,7 @@ angular.module('app', [ //
 	$authProvider.loginUrl = '/auth/login';
 	$authProvider.signupUrl = '/auth/signup'; // TODO ???
 	$authProvider.unlinkUrl = '/auth/unlink/'; // TODO ???
-	$authProvider.tokenName = 'token';
+	$authProvider.tokenName = 'access_token';
 	$authProvider.tokenPrefix = 'project_larp';
 	$authProvider.authHeader = 'Authorization';
 	$authProvider.authToken = 'Bearer';
@@ -75,7 +74,7 @@ angular.module('app', [ //
 //		.iconSet('maps', 'angular/icons/sets/maps-icons.svg', 24) //
 //		.iconSet('navigation', 'angular/icons/sets/navigation-icons.svg', 24) //
 //		.iconSet('notification', 'angular/icons/sets/notification-icons.svg', 24) //
-//		.iconSet('social', 'angular/icons/sets/social-icons.svg', 24) //
+		.iconSet('social', 'angular/icons/sets/social-icons.svg', 24) //
 //		.iconSet('toggle', 'angular/icons/sets/toggle-icons.svg', 24) //
 //		.iconSet('mdi', 'angular/icons/sets/mdi-icons.svg', 24) //
 		;

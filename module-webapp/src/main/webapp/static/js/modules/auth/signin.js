@@ -38,7 +38,10 @@ angular.module('app-auth') //
 	$scope.login = function() {
 		$mdDialog.show(progressDialog);
 		$auth.login($scope.user)
-			.then(function() {
+			.then(function(response) {
+				
+				$scope.$emit('loggedin', '');
+
 				$mdDialog.hide(progressDialog);
 				$location.path('/');
 			})

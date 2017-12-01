@@ -2,6 +2,10 @@ package org.projectlarp.app.config;
 
 import javax.sql.DataSource;
 
+import org.projectlarp.app.modules.auth.CustomBasicAuthenticationFilter;
+import org.projectlarp.app.modules.auth.JsonAuthenticationFilter;
+import org.projectlarp.app.modules.auth.SpringDataJpaUserDetailsService;
+import org.projectlarp.app.modules.auth.TokenAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
@@ -14,10 +18,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import org.projectlarp.app.modules.auth.JsonAuthenticationFilter;
-import org.projectlarp.app.modules.auth.SpringDataJpaUserDetailsService;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 /**
  * Actions:. <br/>
@@ -38,26 +39,17 @@ import org.springframework.security.core.userdetails.User;
 @ConditionalOnClass(DataSource.class)
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-	@Autowired
-	private DataSource dataSource;
-	
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-			.jdbcAuthentication()
-				.dataSource(dataSource)
-				.withDefaultSchema();
-	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+
 		http.addFilterBefore(jsonAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-		http.csrf().disable();//
+        http.addFilterBefore(tokenAuthenticationFilter, BasicAuthenticationFilter.class);
+		        
+        http.csrf().disable();//
 		http //
 				// .antMatcher("/**") //
 				.authorizeRequests() //
-				/// **/ .antMatchers("/api/auth/login").permitAll() //
 				/**/ .antMatchers("/api/auth/login").permitAll() //
 				
 //				/**/ .antMatchers("/").permitAll() //
@@ -70,7 +62,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				/**/ .anyRequest().authenticated() //
 		;
 	}
-
+	@Autowired
+	private TokenAuthenticationFilter tokenAuthenticationFilter;
+	
 	@Bean
 	JsonAuthenticationFilter jsonAuthenticationFilter() throws Exception {
 		JsonAuthenticationFilter filter = new JsonAuthenticationFilter();

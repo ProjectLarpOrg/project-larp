@@ -20,7 +20,7 @@
     <span>{{ 'Users' | translate }}</span>
     <div flex></div>
     
-	<md-button ng-href="#/admin/users-create">
+	<md-button ng-href="{{userUrl}}">
 		<md-icon md-svg-icon="content:add"></md-icon>
 		{{ 'add' | translate }}
 	</md-button>
@@ -32,9 +32,9 @@
 	<table md-table md-row-select ng-model="selected" md-progress="promise">
 		<thead md-head md-on-reorder="getItems">
 			<tr md-row>
-				<th md-column md-order-by="username">{{ 'username' | translate }}</th>
-				<th md-column md-order-by="role"  hide show-gt-xs>{{ 'role' | translate }}</th>
-				<th md-column md-order-by="email" hide show-gt-xs>{{ 'email' | translate }}</th>
+				<th md-column md-order-by="username">{{ 'Name' | translate }}</th>
+				<th md-column md-order-by="email" hide show-gt-xs>{{ 'EMail' | translate }}</th>
+				<th md-column md-order-by="enabled" hide show-gt-xs>{{ 'Status' | translate }}</th>
 				<th md-column></th>
 			</tr>
 		</thead>
@@ -42,11 +42,22 @@
 
 			<tr md-row md-auto-select ng-repeat="item in data.items">
 				<td md-cell>{{ item.username }}</td>
-				<td md-cell hide show-gt-xs>{{ item.role }}</td>
 				<td md-cell hide show-gt-xs>{{ item.email }}</td>
+				<td md-cell hide show-gt-xs>
+					<span ng-show="item.enabled">
+						<md-icon md-svg-icon="action:done"></md-icon>
+						{{ 'Enabled' | translate }}
+					</span>
+					<span ng-show="!item.enabled">
+						<md-icon md-svg-icon="content:block"></md-icon>
+						{{ 'Disabled' | translate }}
+					</span>
+				</td>
 				<td md-cell>
-					<md-button ng-href="#/admin/users/{{item.username}}">
-						<md-icon md-svg-icon="navigate-next.svg"></md-icon></md-button></td>
+					<md-button ng-href="{{userUrl}}/{{item.id}}">
+						<md-icon md-svg-icon="navigate-next.svg"></md-icon>
+					</md-button>
+				</td>
 			</tr>
 
 		</tbody>

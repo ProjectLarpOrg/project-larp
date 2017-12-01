@@ -1,52 +1,58 @@
 <div ng-controller="AccountController">
-<md-content layout-padding id="account">
+<form name="userForm">
 
-  <form name="settingsForm">
+<md-card>
+    <md-card-title>
+    	<md-card-title-text>
+	
+			<span class="md-headline">{{ 'Account' | translate }}</span>
 
-	  	<h2 class="md-title">{{ 'account' | translate }}</h2>
-	  	
-        <md-input-container class="md-block">
-          <label>{{ 'name' | translate }}</label>
-          <input ng-model="user.name">
-        </md-input-container>
-
-        <md-input-container class="md-block">
-          <label>{{ 'username' | translate }}</label>
-          <input ng-model="user.username">
-        </md-input-container>
-
-        <md-input-container class="md-block">
-          <label>{{ 'bio' | translate }}</label>
-          <input ng-model="user.bio">
-        </md-input-container>
-
-	     <span class="md-subhead">{{ 'private_infos' | translate }}</span>
-
-        <md-input-container class="md-block">
-          <label>{{ 'phonenumber' | translate }}</label>
-          <input ng-model="user.email">
-        </md-input-container>
-
-        <md-input-container class="md-block">
-          <label>{{ 'EMail' | translate }} ({{ 'required' | translate }}) *</label>
-          <input ng-model="user.phone">
-        </md-input-container>
-
-        <md-input-container class="md-block">
-          <label>{{ 'language' | translate }}</label>
-           <md-select ng-model="user.language">
-              <md-option ng-repeat="language in languages" value="{{language.abbrev}}">
-                {{language.abbrev}}
-              </md-option>
-            </md-select>
-        </md-input-container>
-
-		<md-button class="md-primary md-raised" type="submit" ng-disabled="true">
+		</md-card-title-text>
+	</md-card-title>
+    <md-card-content>
+    
+     <md-input-container class="md-block">
+	       <label>{{ 'username' | translate }}</label>
+	       <input ng-model="user.username"
+	       	required>
+	       <div ng-messages="projectForm.clientName.$error">
+	         <div ng-message="required">{{ 'required' | translate }}</div>
+	       </div>
+     </md-input-container>
+     <md-input-container class="md-block">
+	       <label>{{ 'EMail' | translate }}</label>
+	       <input ng-model="user.email"
+	       	required type="email" name="email"
+	       	minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+			<div ng-messages="userForm.email.$error" role="alert">
+	        <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+	          {{ 'email.error' | translate }}
+	        </div>
+	      </div>
+     </md-input-container>
+     <md-input-container class="md-block">
+	       <label>{{ 'password' | translate }}</label>
+	       <input ng-model="user.password"
+	       	required type="password" name="password"
+	       	minlength="8" maxlength="100">
+			<div ng-messages="userForm.password.$error" role="alert">
+	        <div ng-message-exp="['required', 'minlength', 'maxlength']">
+	          {{ 'password.error' | translate }}
+	        </div>
+	      </div>
+     </md-input-container>
+    
+    </md-card-content>
+	<md-card-actions layout="row" layout-align="start center">
+	
+		<md-button class="md-primary md-raised" type="submit" ng-click="save(user)"
+			ng-disabled="userForm.$invalid || userForm.$pending">
 			<md-icon md-svg-icon="content:save"></md-icon>
 			{{ 'Save changes' | translate }}
 		</md-button>
+			
+	</md-card-actions> 
+</md-card>
 
-  </form>
-      
-</md-content>
+</form>
 </div>

@@ -27,7 +27,7 @@
       <md-menu-content width="0">
       
         <md-menu-item>
-           	<md-button href="#/profile"> 
+           	<md-button href="#/profile/{{session.userId}}"> 
    				<md-icon md-svg-icon="action:account_circle"></md-icon> 
    				{{ 'profile' | translate }}
    			</md-button> 
@@ -36,7 +36,7 @@
         <md-divider ></md-divider>
 
         <md-menu-item>
-           	<md-button href="#/settings"> 
+           	<md-button href="#/settings/{{session.userId}}"> 
    				{{ 'settings' | translate }}
    			</md-button> 
         </md-menu-item>

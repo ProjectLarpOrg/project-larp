@@ -35,7 +35,13 @@ angular.module('app') //
 		    };
 		    
 			// INIT
-
+		    $scope.$on('loggedin', function (event, data) {
+		    	console.log($auth.getToken());
+			});
+		    
+			if ($auth.isAuthenticated()) { 
+				$scope.$emit('loggedin', '');
+			}
 		},
 		templateUrl : 'js/directives/navbar.html'
 	};

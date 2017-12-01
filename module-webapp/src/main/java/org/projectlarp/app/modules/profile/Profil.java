@@ -4,11 +4,14 @@ import javax.persistence.*;
 import org.projectlarp.app.common.domain.*;
 
 @Entity
-@Table(name = "PROFILE")
-public class Profile extends AbstractDomainClass {
+@Table(name = "PROFILS")
+public class Profil extends AbstractDomainClass {
 	
 	public String name;
 	public String bio;
 	
-	public String iso639Language;
+	public String language;
+	public String theme;
+	
+	public Long userId;
 }

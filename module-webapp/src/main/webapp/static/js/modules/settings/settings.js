@@ -15,16 +15,4 @@ angular.module('app-settings', []) //
 	*/
 })
 
-.controller('AccountController', function($scope) {
-	$scope.languages = ('en fr')
-	.split(' ').map(function(state) {
-		return {abbrev: state};  });
-})
-
-.controller('PreferencesController', function($scope) {
-	$scope.themes = ('Lign Dark')
-		.split(' ').map(function(state) {
-			return {abbrev: state};  });
-})
-
 ;

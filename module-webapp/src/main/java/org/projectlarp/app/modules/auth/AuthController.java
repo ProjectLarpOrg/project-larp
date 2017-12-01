@@ -1,7 +1,10 @@
 package org.projectlarp.app.modules.auth;
 
-import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
+import org.projectlarp.app.modules.admin.User;
+import org.projectlarp.app.modules.admin.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,6 +12,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,23 +31,46 @@ public class AuthController {
 	@Autowired
 	AuthenticationManager authenticationManager;
 
+	@Autowired
+	UserRepository userRepository;
+	/*
+	@Autowired
+	DefaultTokenServices defaultTokenServices;
+	*/
 	@RequestMapping( //
 			value = "/login", //
 			method = RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<AuthResponse> login( //
-			@RequestBody Auth user) {
+	public ResponseEntity<LoginResponse> login( //
+			@RequestBody LoginRequest user) {
 
-		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken( //
-				user.username, //
-				user.password);
+		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken( //
+				user.getUsername(), //
+				user.getPassword());
 		try {
-			Authentication auth = authenticationManager.authenticate(token);
+			// auth
+			Authentication auth = authenticationManager.authenticate(authenticationToken);
 			SecurityContextHolder.getContext().setAuthentication(auth);
-			AuthResponse response = new AuthResponse(token.toString());
-			return new ResponseEntity<AuthResponse>(response, OK);
+			User u = userRepository.findByUsername(user.getUsername());
+			// generate token
+			String id_token = u.id.toString();
+			/*
+			AuthorizationRequest authorizationRequest = new AuthorizationRequest();
+		    authorizationRequest.setApproved(true);
+			OAuth2Authentication authenticationRequest = new OAuth2Authentication(authorizationRequest, authenticationToken);
+	        authenticationRequest.setAuthenticated(true);
+			String accessToken = defaultTokenServices.createAccessToken(auth);
+			*/
+			String accessToken = user.getUsername();
+			// save token
+			u.setToken(accessToken);
+			userRepository.save(u);
+			// send token
+			LoginResponse response = new LoginResponse(u.getToken());
+
+			return new ResponseEntity<LoginResponse>(response, OK);
 		} catch (BadCredentialsException ex) {
-			return new ResponseEntity<AuthResponse>(UNAUTHORIZED);
+			return new ResponseEntity<LoginResponse>(UNAUTHORIZED);
 		}
 	}
 }
