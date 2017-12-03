@@ -34,6 +34,7 @@
 			<tr md-row>
 				<th md-column md-order-by="username">{{ 'Name' | translate }}</th>
 				<th md-column md-order-by="email" hide show-gt-xs>{{ 'EMail' | translate }}</th>
+				<th md-column hide show-gt-sm>{{ 'Authorities' | translate }}</th>
 				<th md-column md-order-by="enabled" hide show-gt-xs>{{ 'Status' | translate }}</th>
 				<th md-column></th>
 			</tr>
@@ -43,6 +44,11 @@
 			<tr md-row md-auto-select ng-repeat="item in data.items">
 				<td md-cell>{{ item.username }}</td>
 				<td md-cell hide show-gt-xs>{{ item.email }}</td>
+				<td md-cell hide show-gt-sm>
+						<md-button ng-disabled="true" class="md-raised" ng-repeat="authority in item.authorities">
+							{{authority.authority}}
+						</md-button>
+				</td>
 				<td md-cell hide show-gt-xs>
 					<span ng-show="item.enabled">
 						<md-icon md-svg-icon="action:done"></md-icon>

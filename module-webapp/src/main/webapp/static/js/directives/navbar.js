@@ -39,8 +39,13 @@ angular.module('app') //
 		    	console.log($auth.getToken());
 			});
 		    
-			if ($auth.isAuthenticated()) { 
-				$scope.$emit('loggedin', '');
+			if ($auth.isAuthenticated()) {
+				var isTokenValid = false;
+				if(isTokenValid) {
+					$scope.$emit('loggedin', '');
+				} else {
+				    $auth.logout();
+				}
 			}
 		},
 		templateUrl : 'js/directives/navbar.html'

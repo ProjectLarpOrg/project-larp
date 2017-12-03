@@ -1,4 +1,4 @@
-package org.projectlarp.app.modules.auth;
+package org.projectlarp.app.modules.auth.config;
 
 import org.projectlarp.app.modules.admin.User;
 import org.projectlarp.app.modules.admin.UserRepository;

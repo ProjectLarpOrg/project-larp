@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 
 public class LoginRequest {
+	
+	// OAUTH PROPERTIES
     private String username;
     private String password;
 

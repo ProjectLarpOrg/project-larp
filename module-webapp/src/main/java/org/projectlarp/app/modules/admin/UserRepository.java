@@ -15,7 +15,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	User findByUsername(String username);
-	User findByToken(String token);
+	User findByIdentityToken(String token);
 
 	@RestResource(path = "filter", rel = "filters")
 	Page<User> findAllByUsernameLikeIgnoreCase( //

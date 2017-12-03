@@ -1,4 +1,4 @@
-package org.projectlarp.app.modules.auth;
+package org.projectlarp.app.modules.auth.config;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;

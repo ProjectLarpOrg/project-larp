@@ -9,12 +9,18 @@ import org.springframework.security.core.GrantedAuthority;
 public class Authority implements GrantedAuthority {
 
 	private static final long serialVersionUID = -111819464029246248L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
-	
+
 	public String authority;
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	/* ACCESSORS *************************** */
 
 	public String getAuthority() {
 		return authority;
@@ -23,9 +29,5 @@ public class Authority implements GrantedAuthority {
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
-	
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
 
 }

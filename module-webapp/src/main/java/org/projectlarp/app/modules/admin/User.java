@@ -17,13 +17,20 @@ public class User implements UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Long id;
+	private Long id;
 
 	/* UserDetails properties ******************************** */
 
 	@Column(nullable = false, unique = true)
 	private String username;
 	private String password;
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
+	private Collection<Authority> authorities = new ArrayList<>();
+
+	@Embedded
+	private Identity identity = new Identity();
+
 	private boolean enabled = true;
 	@Transient
 	private boolean accountNonExpired = true;
@@ -32,30 +39,9 @@ public class User implements UserDetails {
 	@Transient
 	private boolean accountNonLocked = true;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
-	public Collection<Authority> authorities = new ArrayList<>();
-
-	/* Custom properties **************************************** */
-
 	private String email;
 
-	private String token;
-	@Basic
-	@Temporal(TemporalType.DATE)
-	private Calendar tokenExpirationDate;
-
 	/* Accessors *********************************************** */
-
-	public void setToken(String token) {
-		this.token = token;
-		Calendar now = Calendar.getInstance();
-		this.tokenExpirationDate = now;
-	}
-
-	public boolean isTokenValid() {
-		Calendar now = Calendar.getInstance();
-		return token != null && tokenExpirationDate.before(now);
-	}
 
 	public void setPassword(String password) {
 		if (isNotEncoded(password))
@@ -72,8 +58,12 @@ public class User implements UserDetails {
 
 	/* Generated Accessors ************************************* */
 
-	public String getToken() {
-		return token;
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getUsername() {
@@ -136,4 +126,11 @@ public class User implements UserDetails {
 		this.email = email;
 	}
 
+	public Identity getIdentity() {
+		return identity;
+	}
+
+	public void setIdentity(Identity identity) {
+		this.identity = identity;
+	}
 }

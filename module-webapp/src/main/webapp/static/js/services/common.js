@@ -14,8 +14,8 @@ if (!String.prototype.replaceAll) {
 	};
 }
 
-
-angular.module('app') //
+// ANGULAR EXTENSIONS
+angular.module('app-commons', []) //
 
 .filter('maxLength', function() {
 	return function(input, length) {

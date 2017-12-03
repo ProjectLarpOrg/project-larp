@@ -2,7 +2,7 @@
 angular.module('app-settings') //
 
 .factory('ProfileService', function($resource) {
-	return $resource('api/users/:userId/profil');
+	return $resource('api/users/:userId/profil', {userId:'@userId'});
 })
 
 .controller('PreferencesController', function($scope, $routeParams, ProfileService) {

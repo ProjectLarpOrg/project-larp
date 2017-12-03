@@ -1,4 +1,4 @@
-package org.projectlarp.app.modules.auth;
+package org.projectlarp.app.modules.auth.config;
 
 import java.io.IOException;
 
@@ -37,11 +37,11 @@ public class TokenAuthenticationFilter extends GenericFilterBean {
 		final String accessToken = httpRequest.getHeader("authorization");
 		if (null != accessToken && accessToken.startsWith("Bearer ")) {
 			final String token = accessToken.replaceAll("Bearer ","");
-			org.projectlarp.app.modules.admin.User u = userRepository.findByToken(token);
+			org.projectlarp.app.modules.admin.User u = userRepository.findByIdentityToken(token);
 			if (u == null) {
 				throw new UsernameNotFoundException("token not found: "+accessToken);
 			}
-			if (!u.isTokenValid()) {
+			if (!u.getIdentity().isTokenValid()) {
 				throw new IllegalArgumentException("token expired: "+accessToken);
 			}
 			

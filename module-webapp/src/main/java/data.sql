@@ -10,7 +10,6 @@ INSERT INTO authorities (id, user_id, authority) VALUES
   (10201, '102', 'PLAYER'),
   (10301, '103', 'PLAYER')
 ;
-
 INSERT INTO profils (id, user_id, language, theme) VALUES
   (10101, '101', 'fr', 'Light')
 ;

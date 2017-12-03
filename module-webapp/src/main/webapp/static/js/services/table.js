@@ -1,5 +1,5 @@
 'use strict';
-angular.module('app') //
+angular.module('app-spring', []) //
 
 .factory("SearchDatasHelper", function(CriteriaStorage) {
 	return {

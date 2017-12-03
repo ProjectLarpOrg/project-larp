@@ -2,7 +2,7 @@
 
 angular.module('app', [ //
     // APP MODULES
-    'app-auth', //
+	'app-commons', 'app-auth', 'app-spring', //
     'app-admin', //
     'app-settings', 'app-profile', //
     // THIRD PARTY MODULES

@@ -2,10 +2,10 @@ package org.projectlarp.app.config;
 
 import javax.sql.DataSource;
 
-import org.projectlarp.app.modules.auth.CustomBasicAuthenticationFilter;
-import org.projectlarp.app.modules.auth.JsonAuthenticationFilter;
-import org.projectlarp.app.modules.auth.SpringDataJpaUserDetailsService;
-import org.projectlarp.app.modules.auth.TokenAuthenticationFilter;
+import org.projectlarp.app.modules.auth.config.CustomBasicAuthenticationFilter;
+import org.projectlarp.app.modules.auth.config.JsonAuthenticationFilter;
+import org.projectlarp.app.modules.auth.config.SpringDataJpaUserDetailsService;
+import org.projectlarp.app.modules.auth.config.TokenAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
@@ -59,6 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				/**/ .antMatchers("/favicon.jpg", "/favicon.ico").permitAll() //
 				/**/ .antMatchers("/webjars/**").permitAll() //
 				/**/ .antMatchers("/angular/**", "/css/**", "/i18n/**", "/img/**", "/js/**").permitAll() //
+
 				/**/ .anyRequest().authenticated() //
 		;
 	}
