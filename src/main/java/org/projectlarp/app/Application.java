@@ -1,6 +1,5 @@
 package org.projectlarp.app;
 
-import org.projectlarp.app.modules.Package;
 import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,10 +16,9 @@ import org.springframework.web.WebApplicationInitializer;
  */
 @SpringBootApplication(scanBasePackageClasses = { //
 		org.projectlarp.app.config.Package.class, //
-		Package.class })
+		org.projectlarp.app.common.Package.class, //
+		org.projectlarp.app.modules.Package.class })
 @EnableAutoConfiguration
-// @EnableOAuth2Client
-// @EnableAuthorizationServer
 @EnableScheduling
 public class Application extends SpringBootServletInitializer implements WebApplicationInitializer {
 

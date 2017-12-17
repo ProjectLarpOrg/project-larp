@@ -19,18 +19,25 @@
 
 	<properties>
 		<java.version>8</java.version>
-        <node.version>v8.9.1</node.version>
+		<node.version>v8.9.1</node.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
 
-        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
-        <maven-resources-plugin.version>3.0.1</maven-resources-plugin.version>
-        <maven-war-plugin.version>2.6</maven-war-plugin.version>
+		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+		<maven-resources-plugin.version>3.0.1</maven-resources-plugin.version>
+		<maven-war-plugin.version>2.6</maven-war-plugin.version>
 
 	</properties>
 	<dependencies>
+
+		<!-- LANGUAGE EXTENSION -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.5</version>
+		</dependency>
 
 		<!-- SERVER / CONTAINER -->
 		<dependency>
@@ -41,7 +48,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        
 		<!-- SECURITY -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -52,11 +71,15 @@
 			<artifactId>spring-security-oauth2</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-data</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 		</dependency>
 
-		<!-- REST API SERVICES-->
+		<!-- REST API SERVICES -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-rest-webmvc</artifactId>
@@ -103,7 +126,7 @@
 
 	</dependencies>
 	<build>
-        <defaultGoal>spring-boot:run</defaultGoal>
+		<defaultGoal>spring-boot:run</defaultGoal>
 		<resources>
 			<!-- ADD VERSION NUMBER TO INDEX.HTML -->
 			<resource>
@@ -120,7 +143,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
@@ -129,7 +151,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>${maven-war-plugin.version}</version>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<warSourceDirectory>target/www/</warSourceDirectory>
@@ -163,16 +184,16 @@
 			</plugin>
 		</plugins>
 	</build>
-    <profiles>
-        <profile>
-            <id>webpack</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <version>${frontend-maven-plugin.version}</version>
-                        <executions>
+	<profiles>
+		<profile>
+			<id>webpack</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.eirslett</groupId>
+						<artifactId>frontend-maven-plugin</artifactId>
+						<version>${frontend-maven-plugin.version}</version>
+						<executions>
 							<execution>
 								<id>install node and npm</id>
 								<goals>
@@ -200,42 +221,42 @@
 									<arguments>run-script prod</arguments>
 								</configuration>
 							</execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>dev</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-undertow</artifactId>
-                </dependency>
-                <dependency>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-devtools</artifactId>
-                    <optional>true</optional>
-                </dependency>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-undertow</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-devtools</artifactId>
+					<optional>true</optional>
+				</dependency>
 				<!--DATABASE -->
-                <dependency>
-                    <groupId>com.h2database</groupId>
-                    <artifactId>h2</artifactId>
-                </dependency>
-            </dependencies>
-        </profile>
-         <profile>
-           <id>prod</id>
-            <dependencies>
+				<dependency>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<dependencies>
 				<!--DATABASE -->
 				<dependency>
 					<groupId>org.mariadb.jdbc</groupId>
 					<artifactId>mariadb-java-client</artifactId>
 				</dependency>
-            </dependencies>
-        </profile>
-    </profiles>
+			</dependencies>
+		</profile>
+	</profiles>
 </project>
