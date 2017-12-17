@@ -1,5 +1,0 @@
-  {
-    "deploy": {
-      "goal": "-Dexec.mainClass=\"org.projectlarp.app.Application\" assembly:jar-with-dependencies exec:java"
-    }
-  }	
