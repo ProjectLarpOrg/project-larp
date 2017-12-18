@@ -1,11 +1,21 @@
 package org.projectlarp.app.modules.user;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-@Embeddable
+@Entity
+@Table(name = "PROFILES")
 public class Profile {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
 	@Size(max = 50)
 	private String firstName;
 	@Size(max = 50)

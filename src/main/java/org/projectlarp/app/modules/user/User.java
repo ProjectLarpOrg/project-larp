@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
@@ -47,9 +49,9 @@ public class User implements UserDetails {
 	private String password;
 
 	@ManyToMany
-	@JoinTable(name = "user_authority", joinColumns = {
-			@JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = {
-					@JoinColumn(name = "authority_name", referencedColumnName = "name") })
+	@JoinTable(name = "user_authority", //
+			joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, //
+			inverseJoinColumns = { @JoinColumn(name = "authority_authority", referencedColumnName = "authority") })
 	@BatchSize(size = 20)
 	private Collection<Authority> authorities = new ArrayList<>();
 
@@ -71,9 +73,11 @@ public class User implements UserDetails {
 	@Size(min = 2, max = 6)
 	private String themeKey;
 
-	@Embedded
+	@OneToOne
+	@JoinColumn(name = "id", referencedColumnName = "user_id")
 	private Identity identity;
-	@Embedded
+	@OneToOne
+	@JoinColumn(name = "id", referencedColumnName = "user_id")
 	private Profile profile;
 
 	private String activationKey;
@@ -215,5 +219,20 @@ public class User implements UserDetails {
 
 	public void setIdentity(Identity identity) {
 		this.identity = identity;
+	}
+
+	public User() {
+		// Empty constructor needed for Jackson.
+	}
+
+	public User(User user) {
+		this.id = user.getId();
+		this.username = user.getUsername();
+		this.email = user.getEmail();
+		this.enabled = user.getEnabled();
+		this.langKey = user.getLangKey();
+		this.authorities = user.getAuthorities().stream().map(i -> new Authority(i.getAuthority()))
+				.collect(Collectors.toSet());
+		this.authorities = user.authorities;
 	}
 }

@@ -4,13 +4,23 @@ import java.util.Calendar;
 
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-@Embeddable
+@Entity
+@Table(name = "USERS")
 public class Identity {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
 	public static final long EXPIRE_IN = 3600;
 	
 	private String token;

@@ -1,33 +1,28 @@
 package org.projectlarp.app.modules.user;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.projectlarp.app.config.Constants;
-import org.projectlarp.app.modules.user.Authority;
 import org.springframework.security.core.GrantedAuthority;
 
 @Entity
-@Table(name =  "AUTHORITIES")
+@Table(name = "AUTHORITIES")
 public class Authority implements GrantedAuthority {
-
+	
 	private static final long serialVersionUID = -111819464029246248L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
 
 	@NotNull
 	@Size(max = 50)
 	@Id
 	@Column(length = 50)
-	public String authority;
-
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private User user;
-
+	private String authority;
+	
 	/* ACCESSORS *************************** */
 
 	public String getAuthority() {
@@ -60,6 +55,13 @@ public class Authority implements GrantedAuthority {
 	@Override
 	public String toString() {
 		return "Authority{" + "authority='" + authority + '\'' + "}";
+	}
+
+	public Authority() {
+	}
+
+	public Authority(String authority) {
+		this.authority = authority;
 	}
 	
 }
