@@ -39,6 +39,7 @@ public class TokenProvider {
 		return RandomUtil.generateActivationKey();
 	}
 
+	@Deprecated // FIXME TOKEN ALWAYS OK
 	public Authentication getAuthentication(String token) {
 		/*
 		 * Claims claims = Jwts.parser() .setSigningKey(secretKey)

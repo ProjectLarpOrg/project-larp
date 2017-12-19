@@ -7,18 +7,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-/**
- * @see https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot
- */
 @Configuration
 public class WebConfigurer extends WebMvcConfigurerAdapter {
 		
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		if (!registry.hasMappingForPattern("/webjars/**")) {
-			registry.addResourceHandler("/webjars/**") //
-					.addResourceLocations("classpath:/META-INF/resources/webjars/");
-		}
 		if (!registry.hasMappingForPattern("/**")) {
 			registry.addResourceHandler("/**") //
 					.addResourceLocations(resolvePath());
@@ -35,9 +28,6 @@ public class WebConfigurer extends WebMvcConfigurerAdapter {
         return "classpath:/";
     }
 
-    /**
-     *  Resolve path prefix to static resources.
-     */
     private String resolvePathPrefix() {
         String fullExecutablePath = this.getClass().getResource("").getPath();
         String rootPath = Paths.get(".").toUri().normalize().getPath();
