@@ -25,16 +25,8 @@ public class TokenProvider {
 	public String createToken(Authentication authentication, boolean rememberMe) {
 		User user = userRepository.findByUsername(authentication.getName());
 		// generate token
-		String id_token = user.getId().toString();
 		// FIXME generate a real token from user/pass/auth/remember
 		String accessToken = RandomUtil.generateActivationKey();
-		/*
-		 * AuthorizationRequest authorizationRequest = new AuthorizationRequest();
-		 * authorizationRequest.setApproved(true); OAuth2Authentication
-		 * authenticationRequest = new OAuth2Authentication(authorizationRequest,
-		 * authenticationToken); authenticationRequest.setAuthenticated(true); String
-		 * accessToken = defaultTokenServices.createAccessToken(auth);
-		 */
 		// save token
 		Identity identity = user.getIdentity();
 		if (identity == null) {

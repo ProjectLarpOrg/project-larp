@@ -1,6 +1,5 @@
 package org.projectlarp.app.modules.user;
 
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

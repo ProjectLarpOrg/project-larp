@@ -6,6 +6,7 @@ import org.projectlarp.app.security.AuthoritiesConstants;
 import org.projectlarp.app.security.jwt.JWTConfigurer;
 import org.projectlarp.app.security.jwt.TokenProvider;
 import org.springframework.beans.factory.BeanInitializationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -28,26 +29,20 @@ import org.springframework.web.filter.CorsFilter;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final AuthenticationManagerBuilder authenticationManagerBuilder;
-
-    private final UserDetailsService userDetailsService;
-
-    private final TokenProvider tokenProvider;
-
-    private final CorsFilter corsFilter;
-
-    public SecurityConfiguration(AuthenticationManagerBuilder authenticationManagerBuilder, UserDetailsService userDetailsService,TokenProvider tokenProvider,CorsFilter corsFilter) {
-        this.authenticationManagerBuilder = authenticationManagerBuilder;
-        this.userDetailsService = userDetailsService;
-        this.tokenProvider = tokenProvider;
-        this.corsFilter = corsFilter;
-    }
+	@Autowired
+	UserDetailsService userDetailsService;	
+	@Autowired
+    AuthenticationManagerBuilder authenticationManagerBuilder;
+	@Autowired
+    TokenProvider tokenProvider;
+	@Autowired
+    CorsFilter corsFilter;
 
     @PostConstruct
     public void init() {
         try {
             authenticationManagerBuilder
-                .userDetailsService(userDetailsService)
+                .userDetailsService(userDetailsService) 
                 .passwordEncoder(passwordEncoder());
         } catch (Exception e) {
             throw new BeanInitializationException("Security configuration failed", e);

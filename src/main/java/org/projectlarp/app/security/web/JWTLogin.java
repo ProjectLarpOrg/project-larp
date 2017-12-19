@@ -9,7 +9,7 @@ import org.projectlarp.app.config.Constants;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class JWTLoginRequest {
+public class JWTLogin {
 
 	@Pattern(regexp = Constants.LOGIN_REGEX)
 	@NotNull
@@ -22,7 +22,7 @@ public class JWTLoginRequest {
 	private Boolean rememberMe = false;
 
 	@JsonCreator
-	public JWTLoginRequest(@JsonProperty("username") String username, @JsonProperty("password") String password) {
+	public JWTLogin(@JsonProperty("username") String username, @JsonProperty("password") String password) {
 		this.username = username;
 		this.password = password;
 	}

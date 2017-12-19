@@ -1,7 +1,5 @@
 package org.projectlarp.app.modules.user.web;
 
-import java.time.Instant;
-import java.util.List;
 import java.util.Optional;
 
 import org.projectlarp.app.modules.user.User;
@@ -13,36 +11,23 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
-/**
- * @see origin
- *      http://www.baeldung.com/spring-security-authentication-with-a-database
- */
 @RepositoryRestResource(path = "users", collectionResourceRel = "items")
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	User findByUsername(String username);
 
-	User findByIdentityToken(String token);
-
 	@RestResource(path = "filter", rel = "filters")
 	Page<User> findAllByUsernameLikeIgnoreCase(@Param("username") String username, Pageable pageable);
+
+	@EntityGraph(attributePaths = "authorities")
+	Optional<User> findOneWithAuthoritiesById(Long id);
+
+	@EntityGraph(attributePaths = "authorities")
+	Optional<User> findOneWithAuthoritiesByUsername(String username);
+
+	/* CUSTOM ********************* */
+
+	User findByIdentityToken(String token);
+
 	
-	
-    Optional<User> findOneByActivationKey(String activationKey);
-
-    List<User> findAllByActivatedIsFalseAndCreatedDateBefore(Instant dateTime);
-
-    Optional<User> findOneByResetKey(String resetKey);
-
-    Optional<User> findOneByEmailIgnoreCase(String email);
-
-    Optional<User> findOneByLogin(String login);
-
-    @EntityGraph(attributePaths = "authorities")
-    Optional<User> findOneWithAuthoritiesById(Long id);
-
-    @EntityGraph(attributePaths = "authorities")
-    Optional<User> findOneWithAuthoritiesByLogin(String login);
-
-    Page<User> findAllByLoginNot(Pageable pageable, String login);
 }

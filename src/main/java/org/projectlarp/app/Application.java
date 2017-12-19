@@ -17,6 +17,7 @@ import org.springframework.web.WebApplicationInitializer;
 @SpringBootApplication(scanBasePackageClasses = { //
 		org.projectlarp.app.config.Package.class, //
 		org.projectlarp.app.common.Package.class, //
+		org.projectlarp.app.security.Package.class, //
 		org.projectlarp.app.modules.Package.class })
 @EnableAutoConfiguration
 @EnableScheduling

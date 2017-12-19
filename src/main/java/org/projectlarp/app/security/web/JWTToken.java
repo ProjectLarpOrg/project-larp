@@ -3,16 +3,14 @@ package org.projectlarp.app.security.web;
 /**
  * Object to return as body in JWT Authentication.
  */
-public class JWTLoginResponse {
+public class JWTToken {
 
-	public String id_token;
-	public String aud;
+	public String access_token;
 	public String token_type;
 	public Long exp;
 
-	public JWTLoginResponse(String id_token, String aud, Long exp) {
-		this.id_token = id_token;
-		this.aud = aud;
+	public JWTToken(String access_token, Long exp) {
+		this.access_token = access_token;
 		this.token_type = "Bearer";
 		this.exp = exp;
 	}

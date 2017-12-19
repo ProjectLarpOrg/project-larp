@@ -6,15 +6,15 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -48,13 +48,10 @@ public class User implements UserDetails {
 	@Size(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH)
 	private String password;
 
-	@ManyToMany
-	@JoinTable(name = "user_authority", //
-			joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, //
-			inverseJoinColumns = { @JoinColumn(name = "authority_authority", referencedColumnName = "authority") })
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
 	@BatchSize(size = 20)
 	private Collection<Authority> authorities = new ArrayList<>();
-
+	
 	private boolean enabled = true;
 	@Transient
 	private boolean accountNonExpired = true;
