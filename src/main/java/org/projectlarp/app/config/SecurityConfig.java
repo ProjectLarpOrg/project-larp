@@ -3,6 +3,7 @@ package org.projectlarp.app.config;
 import javax.annotation.PostConstruct;
 
 import org.projectlarp.app.security.AuthoritiesConstants;
+import org.projectlarp.app.security.JsonAuthenticationFilter;
 import org.projectlarp.app.security.jwt.JWTConfigurer;
 import org.projectlarp.app.security.jwt.TokenProvider;
 import org.springframework.beans.factory.BeanInitializationException;
@@ -27,7 +28,7 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	UserDetailsService userDetailsService;	
@@ -35,8 +36,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     AuthenticationManagerBuilder authenticationManagerBuilder;
 	@Autowired
     TokenProvider tokenProvider;
-	@Autowired
-    CorsFilter corsFilter;
+//	@Autowired
+//    CorsFilter corsFilter;
 
     @PostConstruct
     public void init() {
@@ -69,7 +70,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
+//            .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
+			.addFilterBefore(jsonAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
             .exceptionHandling()
         .and()
             .csrf()
@@ -97,6 +99,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     }
 
+    @Deprecated
+	@Bean
+	JsonAuthenticationFilter jsonAuthenticationFilter() throws Exception {
+		JsonAuthenticationFilter filter = new JsonAuthenticationFilter();
+		filter.setAuthenticationManager(authenticationManagerBean());
+		System.out.println("jsonAuthenticationFilter");
+		return filter;
+	}
+    
     private JWTConfigurer securityConfigurerAdapter() {
         return new JWTConfigurer(tokenProvider);
     }
