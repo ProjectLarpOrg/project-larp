@@ -1,13 +1,13 @@
 {
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "project": {
-        "name": "springboot1-angular5-bootstrap4-starter"
+        "name": "projectlarp"
     },
     "apps": [{
         "root": "src/main/webapp",
-        "outDir": "target/www/app",
+        "outDir": "target/www",
         "assets": [
-            "content",
+            "assets",
             "i18n",
             "favicon.ico"
         ],
@@ -17,15 +17,14 @@
         "tsconfig": "../../../tsconfig.json",
         "prefix": "app",
         "styles": [
-            "content/css/global.css",
-            "content/css/vendor.css"
-        ],
-        "scripts": []
+            "styles/global.css",
+            "styles/vendor.css"
+        ]
     }],
     "lint": [{
-            "project": "../../../tsconfig.json",
-            "exclude": "**/node_modules/**"
-        }
+        "project": "../../../tsconfig.json",
+        "exclude": "**/node_modules/**"
+    }
     ],
     "defaults": {
         "styleExt": "css",

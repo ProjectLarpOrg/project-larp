@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.projectlarp</groupId>
+	<groupId>com.projectlarp</groupId>
 	<artifactId>project-larp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
@@ -16,12 +16,18 @@
 	<properties>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 		<java.version>8</java.version>
 		<node.version>v8.9.1</node.version>
 
+		<maven-clean-plugin.version>2.6.1</maven-clean-plugin.version>
 		<maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
 		<maven-resources-plugin.version>3.0.1</maven-resources-plugin.version>
 		<maven-war-plugin.version>2.6</maven-war-plugin.version>
+		<frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
+
+		<springfox-swagger.version>2.7.0</springfox-swagger.version>
+		<org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
 
 	</properties>
 	<dependencies>
@@ -54,19 +60,48 @@
 			<artifactId>spring-boot-starter-mobile</artifactId>
 		</dependency>
 		<dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.6.0</version>
-        </dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.6.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId> 
+			<artifactId>aspectjweaver</artifactId>
 		</dependency>
+		<!--
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+		</dependency>
+		-->
 
 		<!-- REST API SERVICES -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-rest-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox-swagger.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox-swagger.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-data-rest</artifactId>
+			<version>${springfox-swagger.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.mapstruct</groupId>
+					<artifactId>mapstruct</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- DATA ACCESS -->
@@ -103,7 +138,26 @@
 			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+
+		<!-- PROXY -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zuul</artifactId>
+			<version>1.4.2.RELEASE</version>
+		</dependency>
+
+		<!-- LANGUAGE EXTENSION ******************* -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${org.mapstruct.version}</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<defaultGoal>spring-boot:run</defaultGoal>
@@ -114,18 +168,25 @@
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${org.mapstruct.version}</version>
+						</path>
+					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>${start-class}</mainClass>
-                    <executable>true</executable>
-                    <fork>true</fork>
-                    <addResources>true</addResources>
-                </configuration>
-            </plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>${start-class}</mainClass>
+					<executable>true</executable>
+					<fork>true</fork>
+					<addResources>true</addResources>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -154,6 +215,13 @@
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+					</resource>
+				</resources>
+			</build>
 			<dependencies>
 				<dependency>
 					<groupId>org.springframework.boot</groupId>
@@ -173,6 +241,59 @@
 		</profile>
 
 		<!-- ******************************************************** -->
+		<!-- * PROD (BACK ONLY) ************************************* -->
+		<!-- ******************************************************** -->
+		<profile>
+			<id>prod-back_only</id>
+			<dependencies>
+				<!--DATABASE -->
+				<dependency>
+					<groupId>org.postgresql</groupId>
+					<artifactId>postgresql</artifactId>
+					<version>42.1.4</version>
+				</dependency>
+			</dependencies>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources-prod</directory>
+					</resource>
+				</resources>
+				<plugins>
+					<!-- PACKAGE SERVER -->
+					<plugin>
+						<artifactId>maven-clean-plugin</artifactId>
+						<version>${maven-clean-plugin.version}</version>
+						<configuration>
+							<filesets>
+								<fileset>
+									<directory>target/www/</directory>
+								</fileset>
+							</filesets>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
+						<version>${maven-war-plugin.version}</version>
+						<configuration>
+							<failOnMissingWebXml>false</failOnMissingWebXml>
+							<warSourceDirectory>target/www/</warSourceDirectory>
+							<webResources>
+								<resource>
+									<directory>src/main/webapp</directory>
+									<includes>
+										<include>WEB-INF/**</include>
+									</includes>
+								</resource>
+							</webResources>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- ******************************************************** -->
 		<!-- * PROD ************************************************* -->
 		<!-- ******************************************************** -->
 		<profile>
@@ -186,7 +307,41 @@
 				</dependency>
 			</dependencies>
 			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources-prod</directory>
+					</resource>
+				</resources>
 				<plugins>
+					<!-- PACKAGE SERVER -->
+					<plugin>
+						<artifactId>maven-clean-plugin</artifactId>
+						<version>${maven-clean-plugin.version}</version>
+						<configuration>
+							<filesets>
+								<fileset>
+									<directory>target/www/</directory>
+								</fileset>
+							</filesets>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
+						<version>${maven-war-plugin.version}</version>
+						<configuration>
+							<failOnMissingWebXml>false</failOnMissingWebXml>
+							<warSourceDirectory>target/www/</warSourceDirectory>
+							<webResources>
+								<resource>
+									<directory>src/main/webapp</directory>
+									<includes>
+										<include>WEB-INF/**</include>
+									</includes>
+								</resource>
+							</webResources>
+						</configuration>
+					</plugin>
 					<!-- PACKAGE CLIENT -->
 					<plugin>
 						<groupId>com.github.eirslett</groupId>
@@ -198,8 +353,12 @@
 								<goals>
 									<goal>install-node-and-npm</goal>
 								</goals>
+								<configuration>
+									<nodeVersion>${node.version}</nodeVersion>
+								</configuration>
 								<phase>initialize</phase>
 							</execution>
+							<!--
 							<execution>
 								<id>npm update</id>
 								<phase>initialize</phase>
@@ -210,6 +369,7 @@
 									<arguments>update</arguments>
 								</configuration>
 							</execution>
+							-->
 							<execution>
 								<id>npm build for production</id>
 								<phase>compile</phase>
@@ -217,7 +377,7 @@
 									<goal>npm</goal>
 								</goals>
 								<configuration>
-									<arguments>run-script prod</arguments>
+									<arguments>run-script build</arguments>
 								</configuration>
 							</execution>
 						</executions>

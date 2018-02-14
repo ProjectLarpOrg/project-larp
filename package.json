@@ -1,9 +1,9 @@
 {
-  "name": "project-larp",
+  "name": "projectlarp",
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build --prod",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -13,7 +13,7 @@
     "node_modules"
   ],
   "engines": {
-    "node": ">=6.9.0"
+    "node": "8.9.1"
   },
   "dependencies": {
     "@angular/common": "5.1.0",
@@ -25,15 +25,13 @@
     "@angular/platform-browser-dynamic": "5.1.0",
     "@angular/router": "5.1.0",
     "@ng-bootstrap/ng-bootstrap": "1.0.0-beta.7",
-    "bootstrap": "4.0.0-beta.3",
+    "bootstrap": "4.0.0-beta.2",
     "core-js": "2.4.1",
     "font-awesome": "4.7.0",
     "jquery": "3.2.1",
-    "ngx-cookie": "2.0.1",
-    "ngx-webstorage": "2.0.1",
-    "require-from-string": "1.2.1",
     "rxjs": "5.5.5",
-    "zone.js": "0.8.16"
+    "zone.js": "0.8.16",
+    "openlayers": "4.6.4"
   },
   "devDependencies": {
     "@angular/cli": "1.6.3",
