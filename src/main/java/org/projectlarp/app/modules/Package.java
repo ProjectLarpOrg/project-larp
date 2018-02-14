@@ -1,6 +1,0 @@
-package org.projectlarp.app.modules;
-
-// DON'T DELETE ME !!! (I'M USED FOR SPRING SCAN)
-public class Package {
-
-}
