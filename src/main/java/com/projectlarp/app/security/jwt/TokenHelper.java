@@ -1,5 +1,8 @@
 package com.projectlarp.app.security.jwt;
 
+import com.projectlarp.app.security.domain.model.User;
+import com.projectlarp.app.security.jwt.common.TimeProvider;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -8,9 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mobile.device.Device;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-
-import com.projectlarp.app.security.domain.model.User;
-import com.projectlarp.app.security.jwt.common.TimeProvider;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;

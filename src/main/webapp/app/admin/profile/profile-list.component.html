@@ -1,0 +1,34 @@
+<nav class="nav justify-content-start mb-4 mt-2">
+  <a class="btn btn-light" routerLink="/">
+    <span class="fa fa-chevron-left"></span>
+  </a>
+  <h2 class="text-uppercase ml-4" i18n>Profile List</h2>
+</nav>
+
+<ul class="list-group">
+  <li *ngFor="let profile of profiles | async"
+       class="list-group-item d-flex justify-content-between" >
+
+    <div>
+      {{profile.username}}
+    </div>
+
+    <div>
+      <button class="btn btn-danger" (click)="delete(profile)">
+          <i class="fa fa-fw fa-trash"></i>
+      </button>
+      <button class="btn btn-light" (click)="open(profile)">
+          <i class="fa fa-fw fa-folder-open-o"></i>
+          Open
+      </button>
+    </div>
+
+  </li>
+</ul>
+
+<div class="mt-4">
+  <button class="btn btn-primary" (click)="add()">
+    <i class="fa fa-fw fa-plus"></i> 
+    Create User
+  </button>
+</div>

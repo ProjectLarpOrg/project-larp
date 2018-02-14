@@ -13,10 +13,9 @@ import org.springframework.web.WebApplicationInitializer;
 
 
 /**
- * @see origin
- *      https://spring.io/blog/2014/03/07/deploying-spring-boot-applications
- * 
- * @see origin http://www.baeldung.com/spring-boot-custom-auto-configuration
+ * References:
+ * https://spring.io/blog/2014/03/07/deploying-spring-boot-applications
+ * http://www.baeldung.com/spring-boot-custom-auto-configuration
  */
 @SpringBootApplication
 @EnableAutoConfiguration

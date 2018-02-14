@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    
+    <!-- Image and text -->
+    <a class="navbar-brand" routerLink="/">
+        <img src="/assets/brand/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        HelloWorld
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" aria-controls="appNavigation" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation" (click)="toggleMenu()">
+            <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="appNavigation" [ngbCollapse]="isCollapsed">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">
+                <i class="fa fa-fw fa-home"></i> 
+                Home</a>
+        </li>
+
+        <li class="nav-item dropdown" ngbDropdown>
+            <a class="nav-link dropdown-toggle" id="dropdown02" ngbDropdownToggle>
+                <i class="fa fa-fw fa-shield"></i>
+                Admin
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdown02" ngbDropdownMenu>
+
+                <h6 class="dropdown-header">User</h6>
+                <a class="dropdown-item" [routerLink]="['/user/profile']">
+                    <i class="fa fa-fw fa-cog"></i>
+                    Profiles</a>                            
+            </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav justify-content-end">
+
+            <li class="nav-item dropdown" ngbDropdown>
+                <a class="nav-link dropdown-toggle" id="dropdownConfig" ngbDropdownToggle>
+                    <i class="fa fa-fw fa-user-circle"></i>
+                    Profile</a>
+                <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+
+                    <h6 class="dropdown-header">Profile menu</h6>
+                    <a class="dropdown-item" [routerLink]="['/logout']">
+                            <i class="fa fa-fw fa-sign-out"></i>
+                            Logout</a>
+
+                </div>
+            </li>
+       </ul>
+    </div>
+  </nav>

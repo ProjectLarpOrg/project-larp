@@ -1,13 +1,13 @@
 package com.projectlarp.app.security.service.impl;
 
+import com.projectlarp.app.security.domain.model.User;
+import com.projectlarp.app.security.domain.repository.UserRepository;
+import com.projectlarp.app.security.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import com.projectlarp.app.security.domain.model.User;
-import com.projectlarp.app.security.domain.repository.UserRepository;
-import com.projectlarp.app.security.service.UserService;
 
 import java.util.List;
 

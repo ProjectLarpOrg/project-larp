@@ -1,12 +1,24 @@
 package com.projectlarp.app.security.domain.model;
 
-import java.util.*;
-import java.util.stream.*;
-import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
+
 import org.hibernate.annotations.BatchSize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "SEC_USERS")
@@ -17,7 +29,7 @@ public class User implements UserDetails {
 	@Id
 	private String username;
 
-	@Size(min = 8, max = 100)
+	@Size(min = 8, max = 100) @JsonIgnore
 	private String password;
 	
 	private boolean enabled = true;

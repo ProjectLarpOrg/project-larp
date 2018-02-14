@@ -26,7 +26,6 @@ spring:
       name: project-larp
   profiles:
       active: dev
-      include: swagger
   devtools:
       restart:
           enabled: true

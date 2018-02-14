@@ -1,0 +1,22 @@
+﻿<div class="row card-columns">
+
+        <div class="card m-3" style="max-width: 18rem;">
+            <div class="card-body">
+                <h1>Welcome</h1>
+                <p>You're logged in !!</p>
+                <p><a class="btn btn-light" [routerLink]="['/logout']">
+                    <i class="fa fa-fw fa-sign-out"></i>
+                    Logout
+                </a></p>
+            </div>
+        </div>
+
+        <div class="card m-3 border-info" style="max-width: 18rem;">
+            <div class="card-body text-info">
+                    <h5 class="card-title">Admin<i class="fa fa-fw fa-user"></i></h5>
+                    <p class="card-text">Manage differents profiles (administrator, user...)</p>
+                <a href="#/admin/profile/list" class="btn btn-light m-1">Profiles <i class="fa fa-fw fa-chevron-right"></i></a>
+            </div>
+        </div>
+
+</div>

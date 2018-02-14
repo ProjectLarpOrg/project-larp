@@ -1,6 +1,6 @@
 {
-  "name": "springboot1-angular5-bootstrap4-starter",
-  "short_name": "bo",
+  "name": "project-larp",
+  "short_name": "larp",
   "icons": [
       {
           "src": "./content/images/logo.png",

@@ -1,5 +1,12 @@
 package com.projectlarp.app.security.rest;
 
+import com.projectlarp.app.security.domain.model.User;
+import com.projectlarp.app.security.jwt.TokenHelper;
+import com.projectlarp.app.security.jwt.auth.JwtAuthenticationRequest;
+import com.projectlarp.app.security.jwt.common.DeviceProvider;
+import com.projectlarp.app.security.jwt.model.UserTokenState;
+import com.projectlarp.app.security.service.impl.CustomUserDetailsService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.projectlarp.app.security.domain.model.User;
-import com.projectlarp.app.security.jwt.TokenHelper;
-import com.projectlarp.app.security.jwt.auth.JwtAuthenticationRequest;
-import com.projectlarp.app.security.jwt.common.DeviceProvider;
-import com.projectlarp.app.security.jwt.model.UserTokenState;
-import com.projectlarp.app.security.service.impl.CustomUserDetailsService;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -31,7 +31,7 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping( value = "/auth", produces = MediaType.APPLICATION_JSON_VALUE )
+@RequestMapping( value = "api/auth", produces = MediaType.APPLICATION_JSON_VALUE )
 public class AuthenticationController {
 
     @Autowired

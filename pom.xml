@@ -26,9 +26,6 @@
 		<maven-war-plugin.version>2.6</maven-war-plugin.version>
 		<frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
 
-		<springfox-swagger.version>2.7.0</springfox-swagger.version>
-		<org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
-
 	</properties>
 	<dependencies>
 
@@ -80,29 +77,6 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-rest-webmvc</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>${springfox-swagger.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>${springfox-swagger.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-data-rest</artifactId>
-			<version>${springfox-swagger.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.mapstruct</groupId>
-					<artifactId>mapstruct</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 
 		<!-- DATA ACCESS -->
 		<dependency>
@@ -152,11 +126,6 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.6</version>
 		</dependency>
-		<dependency>
-			<groupId>org.mapstruct</groupId>
-			<artifactId>mapstruct</artifactId>
-			<version>${org.mapstruct.version}</version>
-		</dependency>
 
 	</dependencies>
 	<build>
@@ -168,13 +137,6 @@
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
-					<annotationProcessorPaths>
-						<path>
-							<groupId>org.mapstruct</groupId>
-							<artifactId>mapstruct-processor</artifactId>
-							<version>${org.mapstruct.version}</version>
-						</path>
-					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
 			<plugin>
