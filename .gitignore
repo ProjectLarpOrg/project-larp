@@ -64,7 +64,6 @@ classes/
 ######################
 # Visual Studio Code
 ######################
-.vscode/
 !.vscode/launch.json
 
 ######################
